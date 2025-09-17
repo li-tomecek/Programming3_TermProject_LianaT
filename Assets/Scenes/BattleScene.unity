@@ -731,8 +731,8 @@ MonoBehaviour:
   - {fileID: 1793466952}
   - {fileID: 651215199}
   _infoCard: {fileID: 803466488}
-  _infoCardScale: 1.75
-  _infoCardY: 130
+  _infoCardScale: 1.6
+  _infoCardY: 350
   _infoCardTransitionTime: 0.3
 --- !u!114 &410746716
 MonoBehaviour:
