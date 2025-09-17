@@ -34,7 +34,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -8, y: 138}
+  m_AnchoredPosition: {x: 8, y: 110}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &643796038076526040
@@ -130,7 +130,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -3.1901627, y: 0, z: -15.85318, w: 0}
+  m_margin: {x: -3.1901627, y: 0, z: 13.822983, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -170,7 +170,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -9, y: 57}
+  m_AnchoredPosition: {x: -9, y: 50}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7499926855797462305
@@ -266,7 +266,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 1.8126755, y: 0, z: -14.437714, w: -180.77191}
+  m_margin: {x: 14.684151, y: 0, z: -4.535492, w: -161.56787}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -284,8 +284,9 @@ GameObject:
   - component: {fileID: 296581228075837691}
   - component: {fileID: 8444532063230533436}
   - component: {fileID: 5398713698766317975}
+  - component: {fileID: 5126909197318348417}
   m_Layer: 5
-  m_Name: Card_Physical
+  m_Name: Card_Interface
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -310,7 +311,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: -3.8130493, y: 0.04156494}
-  m_SizeDelta: {x: 250, y: 350}
+  m_SizeDelta: {x: 212.5, y: 297.5}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!222 &296581228075837691
 CanvasRenderer:
@@ -362,3 +363,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdac6dfb751da88448da0e7f6d547987, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cardName: 
+  cardDescription: 
+--- !u!114 &5126909197318348417
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3821288318099898900}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ea18804818e78d44821cbe237400d03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nameText: {fileID: 6226353656482262845}
+  descriptionText: {fileID: 2299259043603156995}
