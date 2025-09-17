@@ -12,6 +12,7 @@ public class PhysicalCard : MonoBehaviour,
     [SerializeField] private TMP_Text descriptionText;
 
     private bool _IsHeld;
+    private Vector3 _mousePosition;
     
     public event System.Action<Card> HoverStartEvent;
     public event System.Action HoverEndEvent;
@@ -41,8 +42,7 @@ public class PhysicalCard : MonoBehaviour,
 
     public void OnDrag(PointerEventData eventData)
     {
-        //update the card position on screen to match/follow mouse
-        throw new System.NotImplementedException();
+        gameObject.transform.position += (Vector3)eventData.delta;
     }
 
     public void OnEndDrag(PointerEventData eventData)
