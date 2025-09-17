@@ -35,7 +35,7 @@ public class Hand : MonoBehaviour
         _infoCard.SetActive(false);
 
         infoCardSeq = DOTween.Sequence();
-        infoCardSeq.Append(_infoCard.transform.DOMoveY(_infoCardY, _infoCardTransitionTime));
+        infoCardSeq.Append(_infoCard.transform.DOLocalMoveY(_infoCardY, _infoCardTransitionTime));
         infoCardSeq.Join(_infoCard.transform.DOScale(_infoCardScale, _infoCardTransitionTime));
         infoCardSeq.SetAutoKill(false);
     }

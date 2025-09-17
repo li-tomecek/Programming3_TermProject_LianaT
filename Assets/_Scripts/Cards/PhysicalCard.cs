@@ -62,7 +62,7 @@ public class PhysicalCard : MonoBehaviour,
         if (_IsHeld)
             return;
 
-        gameObject.transform.DOLocalMoveY(_dockedLocalPosition.y + 10f, 0.5f);
+        gameObject.transform.DOLocalMoveY(_dockedLocalPosition.y + 15f, 0.5f);
         HoverStartEvent?.Invoke(gameObject.GetComponentInChildren<Card>());
     }
 
