@@ -12,9 +12,13 @@ public class PhysicalCard : MonoBehaviour,
     [SerializeField] private TMP_Text descriptionText;
 
     private bool _IsHeld;
+    
     public event System.Action<Card> HoverStartEvent;
     public event System.Action HoverEndEvent;
-
+    
+    //-----------------------------------------------------
+    //-----------------------------------------------------
+    
     private void Start()
     {
         SetDisplayInformation(gameObject.GetComponentInChildren<Card>());
@@ -53,7 +57,8 @@ public class PhysicalCard : MonoBehaviour,
     {
         if (_IsHeld)
             return;
-
+        
+        gameObject.transform.DOLocalMoveY(15f, 0.5f);   //magic numbers to fix
         HoverStartEvent?.Invoke(gameObject.GetComponentInChildren<Card>());
     }
 
@@ -62,6 +67,7 @@ public class PhysicalCard : MonoBehaviour,
         if (_IsHeld)
             return;
         
+        gameObject.transform.DOLocalMoveY(-15f, 0.5f);   //magic numbers to fix
         HoverEndEvent?.Invoke();
     }
 }
