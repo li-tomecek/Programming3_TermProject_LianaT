@@ -12,7 +12,7 @@ public class PhysicalCard : MonoBehaviour,
     [SerializeField] private TMP_Text descriptionText;
 
     private bool _IsHeld;
-    private Vector3 _mousePosition;
+    private Vector3 _dockedLocalPosition;
     
     public event System.Action<Card> HoverStartEvent;
     public event System.Action HoverEndEvent;
@@ -23,6 +23,7 @@ public class PhysicalCard : MonoBehaviour,
     private void Start()
     {
         SetDisplayInformation(gameObject.GetComponentInChildren<Card>());
+        _dockedLocalPosition = gameObject.transform.localPosition;
     }
 
     public void SetDisplayInformation(Card card)
@@ -38,6 +39,7 @@ public class PhysicalCard : MonoBehaviour,
     {
         _IsHeld = true;
         HoverEndEvent?.Invoke();
+        
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -48,6 +50,8 @@ public class PhysicalCard : MonoBehaviour,
     public void OnEndDrag(PointerEventData eventData)
     {
         _IsHeld = false;
+
+        gameObject.transform.DOLocalMove(_dockedLocalPosition, 0.5f); 
     }
 
     // -----------------
@@ -57,8 +61,8 @@ public class PhysicalCard : MonoBehaviour,
     {
         if (_IsHeld)
             return;
-        
-        gameObject.transform.DOLocalMoveY(15f, 0.5f);   //magic numbers to fix
+
+        gameObject.transform.DOLocalMoveY(_dockedLocalPosition.y + 10f, 0.5f);
         HoverStartEvent?.Invoke(gameObject.GetComponentInChildren<Card>());
     }
 
@@ -67,7 +71,12 @@ public class PhysicalCard : MonoBehaviour,
         if (_IsHeld)
             return;
         
-        gameObject.transform.DOLocalMoveY(-15f, 0.5f);   //magic numbers to fix
+        gameObject.transform.DOLocalMove(_dockedLocalPosition, 0.5f);
         HoverEndEvent?.Invoke();
+    }
+
+    public void SetDockedPosition(Vector3 position)
+    {
+        this._dockedLocalPosition = position;
     }
 }

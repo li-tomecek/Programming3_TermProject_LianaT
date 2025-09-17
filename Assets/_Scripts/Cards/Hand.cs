@@ -60,7 +60,8 @@ public class Hand : MonoBehaviour
         for(int i = 0; i < physicalCards.Count; i++)
         {
             newPosition.x = (i * slotWidth) + (slotWidth / 2f);
-            physicalCards[i].gameObject.transform.localPosition = newPosition; 
+            physicalCards[i].gameObject.transform.localPosition = newPosition;
+            physicalCards[i].gameObject.GetComponentInChildren<PhysicalCard>().SetDockedPosition(newPosition);
         }
     }
 
