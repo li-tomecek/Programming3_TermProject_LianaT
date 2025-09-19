@@ -95,7 +95,7 @@ public class Hand : MonoBehaviour
 
     private IEnumerator DelayedClose()
     {
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.01f);
         if (!isHoveringCard)    //check to see if we immediately started hovering over a new card
         {
             infoCardSeq.PlayBackwards();

@@ -13,17 +13,23 @@ public class PhysicalCard : MonoBehaviour,
 
     private bool _IsHeld;
     private Vector3 _dockedLocalPosition;
+    private Sequence _hoverSequence;            //This needs to be its own sequence in order to pause it when a card is being dragged
     
     public event System.Action<Card> HoverStartEvent;
     public event System.Action HoverEndEvent;
-    
+
     //-----------------------------------------------------
     //-----------------------------------------------------
-    
+
     private void Start()
     {
         SetDisplayInformation(gameObject.GetComponentInChildren<Card>());
         _dockedLocalPosition = gameObject.transform.localPosition;
+
+        _hoverSequence = DOTween.Sequence();
+        _hoverSequence.Pause();
+        _hoverSequence.SetAutoKill(false);
+        _hoverSequence.Join(gameObject.transform.DOLocalMoveY(_dockedLocalPosition.y + 15f, 0.5f));
     }
 
     public void SetDisplayInformation(Card card)
@@ -38,8 +44,8 @@ public class PhysicalCard : MonoBehaviour,
     public void OnBeginDrag(PointerEventData eventData)
     {
         _IsHeld = true;
+        _hoverSequence?.Pause();
         HoverEndEvent?.Invoke();
-        
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -62,7 +68,7 @@ public class PhysicalCard : MonoBehaviour,
         if (_IsHeld)
             return;
 
-        gameObject.transform.DOLocalMoveY(_dockedLocalPosition.y + 15f, 0.5f);
+        _hoverSequence.Restart();
         HoverStartEvent?.Invoke(gameObject.GetComponentInChildren<Card>());
     }
 
