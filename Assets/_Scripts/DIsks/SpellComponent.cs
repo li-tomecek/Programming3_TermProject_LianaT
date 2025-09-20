@@ -1,26 +1,27 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class SpellComponent : MonoBehaviour
+public class SpellComponent : MonoBehaviour, Clickable
 {
     [SerializeField] private SpriteRenderer _sprite;
+    [SerializeField] private bool _isInteractable = true;
 
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public void OnClick()
     {
-
+        Debug.Log($"Clicked on {gameObject.name}");
     }
+}
 
-    // Update is called once per frame
-    void Update()
-    {
 
-    }
-
-    public void ButtonClicked()
-    {
-        Debug.Log($"Clicked on the {gameObject.name}");
-    }
-
+public enum CardPosition
+{
+    Front,
+    Left,
+    Right
+}
+public enum SpellType
+{
+    Holy,
+    Dark,
+    Arcane
 }

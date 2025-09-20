@@ -1,10 +1,11 @@
 using DG.Tweening;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent (typeof(RectTransform))]
-public class Hand : MonoBehaviour
+public class Hand : Singleton<Hand>
 {
     private RectTransform _rectTransform;
 
@@ -46,6 +47,9 @@ public class Hand : MonoBehaviour
     //-------------------------------
     private void AddCardToHand(Card card)
     {
+        if (physicalCards.Count >= MAX_HAND_SIZE)
+            throw new Exception("Trying to add cards to a full hand!");
+
         physicalCards.Add(card);
         RegisterCard(card);
     }
@@ -69,7 +73,6 @@ public class Hand : MonoBehaviour
             physicalCards[i].gameObject.GetComponentInChildren<PhysicalCard>().SetDockedPosition(newPosition);
         }
     }
-
 
     //-------------------------------
     //  Managing Enlarged Info Card
