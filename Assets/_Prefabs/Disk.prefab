@@ -96,8 +96,9 @@ GameObject:
   m_Component:
   - component: {fileID: 674296043608695361}
   - component: {fileID: 2628526897111898786}
+  - component: {fileID: 6874119457641782577}
   m_Layer: 0
-  m_Name: Holy_Icon
+  m_Name: Holy_Spell
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -112,7 +113,7 @@ Transform:
   m_GameObject: {fileID: 2205591785059308133}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.59, z: 1.3}
+  m_LocalPosition: {x: 0, y: 0.59, z: 1.796}
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -173,6 +174,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &6874119457641782577
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2205591785059308133}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc4a8a8d4b207174288bff310463fdcf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sprite: {fileID: 2628526897111898786}
 --- !u!1 &3329756336297477676
 GameObject:
   m_ObjectHideFlags: 0
@@ -183,8 +197,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4852719073490724902}
   - component: {fileID: 6432917655625437924}
+  - component: {fileID: 8122327118537440239}
   m_Layer: 0
-  m_Name: Arcane_Icon
+  m_Name: Arcane_Spell
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -199,7 +214,7 @@ Transform:
   m_GameObject: {fileID: 3329756336297477676}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.46464488, z: -0, w: 0.88549715}
-  m_LocalPosition: {x: -1.3, y: 0.59, z: -0.7}
+  m_LocalPosition: {x: -1.76, y: 0.59, z: -1.09}
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -260,6 +275,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &8122327118537440239
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3329756336297477676}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc4a8a8d4b207174288bff310463fdcf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sprite: {fileID: 6432917655625437924}
 --- !u!1 &3419911173462647220
 GameObject:
   m_ObjectHideFlags: 0
@@ -269,6 +297,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 997238749802505559}
+  - component: {fileID: 2538530272667768767}
   m_Layer: 0
   m_Name: Disk
   m_TagString: Untagged
@@ -293,6 +322,18 @@ Transform:
   - {fileID: 5077883233538946521}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2538530272667768767
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3419911173462647220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5c757ed03e4e6446bef3f912bc2cc2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4101510953101112205
 GameObject:
   m_ObjectHideFlags: 0
@@ -303,8 +344,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1276511237031267958}
   - component: {fileID: 1184638884614212626}
+  - component: {fileID: 3865268856383065987}
   m_Layer: 0
-  m_Name: Dark_Icon
+  m_Name: Dark_Spell
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -319,7 +361,7 @@ Transform:
   m_GameObject: {fileID: 4101510953101112205}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.5166675, z: -0, w: 0.8561862}
-  m_LocalPosition: {x: 1.3, y: 0.59, z: -0.7}
+  m_LocalPosition: {x: 1.79, y: 0.59, z: -0.96}
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -380,6 +422,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &3865268856383065987
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4101510953101112205}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc4a8a8d4b207174288bff310463fdcf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sprite: {fileID: 1184638884614212626}
 --- !u!1 &5505355739990067526
 GameObject:
   m_ObjectHideFlags: 0
