@@ -1,4 +1,5 @@
 using DG.Tweening;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -46,6 +47,9 @@ public class Hand : MonoBehaviour
     //-------------------------------
     private void AddCardToHand(Card card)
     {
+        if (physicalCards.Count >= MAX_HAND_SIZE)
+            throw new Exception("Trying to add cards to a full hand!");
+
         physicalCards.Add(card);
         RegisterCard(card);
     }
@@ -69,7 +73,6 @@ public class Hand : MonoBehaviour
             physicalCards[i].gameObject.GetComponentInChildren<PhysicalCard>().SetDockedPosition(newPosition);
         }
     }
-
 
     //-------------------------------
     //  Managing Enlarged Info Card
@@ -95,7 +98,7 @@ public class Hand : MonoBehaviour
 
     private IEnumerator DelayedClose()
     {
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.01f);
         if (!isHoveringCard)    //check to see if we immediately started hovering over a new card
         {
             infoCardSeq.PlayBackwards();
