@@ -97,6 +97,7 @@ GameObject:
   - component: {fileID: 674296043608695361}
   - component: {fileID: 2628526897111898786}
   - component: {fileID: 6874119457641782577}
+  - component: {fileID: 9179042019002229634}
   m_Layer: 0
   m_Name: Holy_Spell
   m_TagString: Untagged
@@ -187,6 +188,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _sprite: {fileID: 2628526897111898786}
+--- !u!65 &9179042019002229634
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2205591785059308133}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.32, y: 0.32, z: 0.2}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3329756336297477676
 GameObject:
   m_ObjectHideFlags: 0
@@ -198,6 +220,7 @@ GameObject:
   - component: {fileID: 4852719073490724902}
   - component: {fileID: 6432917655625437924}
   - component: {fileID: 8122327118537440239}
+  - component: {fileID: 627484646569447180}
   m_Layer: 0
   m_Name: Arcane_Spell
   m_TagString: Untagged
@@ -288,6 +311,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _sprite: {fileID: 6432917655625437924}
+--- !u!65 &627484646569447180
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3329756336297477676}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.32000002, y: 0.32, z: 0.20000005}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3419911173462647220
 GameObject:
   m_ObjectHideFlags: 0
@@ -345,6 +389,7 @@ GameObject:
   - component: {fileID: 1276511237031267958}
   - component: {fileID: 1184638884614212626}
   - component: {fileID: 3865268856383065987}
+  - component: {fileID: 3988631816450593949}
   m_Layer: 0
   m_Name: Dark_Spell
   m_TagString: Untagged
@@ -435,6 +480,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _sprite: {fileID: 1184638884614212626}
+--- !u!65 &3988631816450593949
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4101510953101112205}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.32000002, y: 0.32, z: 0.20000003}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5505355739990067526
 GameObject:
   m_ObjectHideFlags: 0
