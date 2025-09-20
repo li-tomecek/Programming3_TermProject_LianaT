@@ -187,8 +187,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc4a8a8d4b207174288bff310463fdcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _disk: {fileID: 3419911173462647220}
   _sprite: {fileID: 2628526897111898786}
   _isInteractable: 1
+  _spellPosition: 0
+  _spellType: 0
 --- !u!65 &9179042019002229634
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -311,8 +314,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc4a8a8d4b207174288bff310463fdcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _disk: {fileID: 3419911173462647220}
   _sprite: {fileID: 6432917655625437924}
   _isInteractable: 1
+  _spellPosition: 1
+  _spellType: 2
 --- !u!65 &627484646569447180
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -468,8 +474,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc4a8a8d4b207174288bff310463fdcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _disk: {fileID: 3419911173462647220}
   _sprite: {fileID: 1184638884614212626}
   _isInteractable: 1
+  _spellPosition: 2
+  _spellType: 1
 --- !u!65 &3988631816450593949
 BoxCollider:
   m_ObjectHideFlags: 0

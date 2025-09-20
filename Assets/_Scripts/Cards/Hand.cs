@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent (typeof(RectTransform))]
-public class Hand : Singleton<Hand>
+public class Hand : MonoBehaviour
 {
     private RectTransform _rectTransform;
 
