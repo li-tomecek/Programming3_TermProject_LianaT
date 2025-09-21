@@ -1,6 +1,6 @@
 public interface IState
 {
     void Enter();
-    void Execute();
+    void Update();
     void Exit();
 }

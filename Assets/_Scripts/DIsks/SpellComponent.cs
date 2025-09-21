@@ -15,12 +15,10 @@ public class SpellComponent : MonoBehaviour, Clickable
     public SpellPosition SpellPosition => _spellPosition;
     public SpellType SpellType => _spellType;
 
-
     public void Awake()
     {
         gameObject.transform.LookAt(Camera.main.transform, Vector3.up);
     }
-
 
     public void OnClick()
     {

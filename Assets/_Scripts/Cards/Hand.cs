@@ -10,7 +10,7 @@ public class Hand : MonoBehaviour
     private RectTransform _rectTransform;
 
     private const int MAX_HAND_SIZE = 5;
-    [SerializeField] private List<Card> physicalCards = new List<Card>();
+    [SerializeField] private List<Card> cards = new List<Card>();
 
     [SerializeField] private GameObject _infoCard;
     [SerializeField] private float _infoCardScale = 1.75f;
@@ -27,7 +27,7 @@ public class Hand : MonoBehaviour
         _rectTransform = GetComponent<RectTransform>();
 
         //Cards
-        foreach (Card card in physicalCards)            //In case we added cards through the editor (for testing)
+        foreach (Card card in cards)            //In case we added cards through the editor (for testing)
             RegisterCard(card);
         
         SetCardPositionsInHand();
@@ -47,10 +47,10 @@ public class Hand : MonoBehaviour
     //-------------------------------
     private void AddCardToHand(Card card)
     {
-        if (physicalCards.Count >= MAX_HAND_SIZE)
+        if (cards.Count >= MAX_HAND_SIZE)
             throw new Exception("Trying to add cards to a full hand!");
 
-        physicalCards.Add(card);
+        cards.Add(card);
         RegisterCard(card);
     }
 
@@ -63,14 +63,14 @@ public class Hand : MonoBehaviour
     private void SetCardPositionsInHand()
     {
         //evenly space out the cards in the area provided. May be overlap/overflow over edge of space
-        float slotWidth = _rectTransform.rect.width / physicalCards.Count;
+        float slotWidth = _rectTransform.rect.width / cards.Count;
 
         Vector3 newPosition = new Vector3();
-        for(int i = 0; i < physicalCards.Count; i++)
+        for(int i = 0; i < cards.Count; i++)
         {
             newPosition.x = (i * slotWidth) + (slotWidth / 2f); 
-            physicalCards[i].gameObject.transform.localPosition = newPosition;
-            physicalCards[i].gameObject.GetComponentInChildren<PhysicalCard>().SetDockedPosition(newPosition);
+            cards[i].gameObject.transform.localPosition = newPosition;
+            cards[i].gameObject.GetComponentInChildren<PhysicalCard>().SetDockedPosition(newPosition);
         }
     }
 
