@@ -3,18 +3,20 @@ using UnityEngine.EventSystems;
 using DG.Tweening;
 using TMPro;
 
-[RequireComponent (typeof(Card))]
-public class PhysicalCard : MonoBehaviour, 
+public class PhysicalCard : MonoBehaviour,
     IPointerExitHandler, IPointerEnterHandler,
     IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     [SerializeField] private TMP_Text nameText;
     [SerializeField] private TMP_Text descriptionText;
 
+    private Card _associatedCard;
+
     private bool _IsHeld;
     private Vector3 _dockedLocalPosition;
+
     private Sequence _hoverSequence;            //This needs to be its own sequence in order to pause it when a card is being dragged
-    
+
     public event System.Action<Card> HoverStartEvent;
     public event System.Action HoverEndEvent;
 
@@ -23,7 +25,6 @@ public class PhysicalCard : MonoBehaviour,
 
     private void Start()
     {
-        SetDisplayInformation(gameObject.GetComponentInChildren<Card>());
         _dockedLocalPosition = gameObject.transform.localPosition;
 
         _hoverSequence = DOTween.Sequence();
@@ -57,7 +58,7 @@ public class PhysicalCard : MonoBehaviour,
     {
         _IsHeld = false;
 
-        gameObject.transform.DOLocalMove(_dockedLocalPosition, 0.5f); 
+        gameObject.transform.DOLocalMove(_dockedLocalPosition, 0.5f);
     }
 
     // -----------------
@@ -69,20 +70,32 @@ public class PhysicalCard : MonoBehaviour,
             return;
 
         _hoverSequence.Restart();
-        HoverStartEvent?.Invoke(gameObject.GetComponentInChildren<Card>());
+        HoverStartEvent?.Invoke(_associatedCard);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
         if (_IsHeld)
             return;
-        
+
         gameObject.transform.DOLocalMove(_dockedLocalPosition, 0.5f);
         HoverEndEvent?.Invoke();
     }
 
     public void SetDockedPosition(Vector3 position)
     {
-        this._dockedLocalPosition = position;
+        _dockedLocalPosition = position;
+    }
+
+
+    // -----------------
+    // Get/Set
+    // -----------------
+    public Card AssociatedCard => _associatedCard;
+
+    public void SetAssociatedCard(Card card)
+    {
+        _associatedCard = card;
+        SetDisplayInformation(card);
     }
 }

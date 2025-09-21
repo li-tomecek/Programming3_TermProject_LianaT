@@ -8,7 +8,7 @@ public class Disk : MonoBehaviour
     [SerializeField] private float _timeToRotate = 0.6f;
 
     private Card _activeCard;
-    private bool _isInteractable;
+    [SerializeField] private bool _isInteractable;
 
     private SpellComponent[] _spellList;
 

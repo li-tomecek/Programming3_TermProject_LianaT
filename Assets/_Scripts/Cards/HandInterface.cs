@@ -2,21 +2,27 @@ using DG.Tweening;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [RequireComponent (typeof(RectTransform))]
-public class Hand : MonoBehaviour
+public class HandInterface : MonoBehaviour
 {
     private RectTransform _rectTransform;
 
+    //Hand
     private const int MAX_HAND_SIZE = 5;
-    [SerializeField] private List<Card> cards = new List<Card>();
+    private List<PhysicalCard> _physicalCards = new List<PhysicalCard>();
+    private ObjectPool _physicalCardPool;
+    [SerializeField] GameObject PhysCardPrefab;
 
+    //Info Card
     [SerializeField] private GameObject _infoCard;
     [SerializeField] private float _infoCardScale = 1.75f;
     [SerializeField] private float _infoCardY = 100f;
     [SerializeField] private float _infoCardTransitionTime = 0.5f;
-    private Sequence infoCardSeq;
+    private DG.Tweening.Sequence infoCardSeq;
+
     private bool isHoveringCard;
     
     //-----------------------------------------------------
@@ -25,12 +31,7 @@ public class Hand : MonoBehaviour
     private void Start()
     {
         _rectTransform = GetComponent<RectTransform>();
-
-        //Cards
-        foreach (Card card in cards)            //In case we added cards through the editor (for testing)
-            RegisterCard(card);
-        
-        SetCardPositionsInHand();
+        _physicalCardPool = new ObjectPool(PhysCardPrefab, MAX_HAND_SIZE, this.gameObject);   //create pool of card prefabs
 
         //InfoCard
         _infoCard.SetActive(false);
@@ -41,37 +42,49 @@ public class Hand : MonoBehaviour
         infoCardSeq.SetAutoKill(false);
     }
 
-
     //-------------------------------
     //        Managing Hand
     //-------------------------------
-    private void AddCardToHand(Card card)
+    public void AddPhysicalCardToHand(Card card)
     {
-        if (cards.Count >= MAX_HAND_SIZE)
+        if (_physicalCards.Count >= MAX_HAND_SIZE)
             throw new Exception("Trying to add cards to a full hand!");
 
-        cards.Add(card);
-        RegisterCard(card);
+
+        PhysicalCard temp = _physicalCardPool.GetActivePooledObject().GetComponent<PhysicalCard>();
+        temp.SetAssociatedCard(card);
+        RegisterCardEvents(temp);
+        _physicalCards.Add(temp);
     }
 
-    private void RegisterCard(Card card)
+    public void RemovePhysicalCardFromHand(PhysicalCard card)
     {
-        card.gameObject.GetComponentInChildren<PhysicalCard>().HoverStartEvent += ShowInfoCard;
-        card.gameObject.GetComponentInChildren<PhysicalCard>().HoverEndEvent += HideInfoCard;
+        _physicalCards.Remove(card);
+        card.gameObject.SetActive(false);   //To put it back into the pool
     }
 
-    private void SetCardPositionsInHand()
+    private void RegisterCardEvents(PhysicalCard card)
     {
+        card.HoverStartEvent += ShowInfoCard;
+        card.HoverEndEvent += HideInfoCard;
+    }
+
+    public void SetCardPositionsInHand()
+    {
+        if (_physicalCards.Count == 0) return;
+
         //evenly space out the cards in the area provided. May be overlap/overflow over edge of space
-        float slotWidth = _rectTransform.rect.width / cards.Count;
+        float slotWidth = _rectTransform.rect.width / _physicalCards.Count;
 
         Vector3 newPosition = new Vector3();
-        for(int i = 0; i < cards.Count; i++)
+        for (int i = 0; i < _physicalCards.Count; i++)
         {
-            newPosition.x = (i * slotWidth) + (slotWidth / 2f); 
-            cards[i].gameObject.transform.localPosition = newPosition;
-            cards[i].gameObject.GetComponentInChildren<PhysicalCard>().SetDockedPosition(newPosition);
+            newPosition.x = (i * slotWidth) + (slotWidth / 2f);
+            _physicalCards[i].gameObject.transform.localPosition = newPosition;
+            _physicalCards[i].SetDockedPosition(newPosition);
         }
+
+        Debug.Log("reset hand card positions");
     }
 
     //-------------------------------
@@ -106,6 +119,5 @@ public class Hand : MonoBehaviour
             _infoCard.SetActive(false);
         }
     }
-
 
 }
