@@ -3,7 +3,6 @@ using UnityEngine.EventSystems;
 using DG.Tweening;
 using TMPro;
 using UnityEngine.InputSystem;
-using UnityEditor.Experimental.GraphView;
 
 public class PhysicalCard : MonoBehaviour,
     IPointerExitHandler, IPointerEnterHandler,
@@ -17,7 +16,8 @@ public class PhysicalCard : MonoBehaviour,
 
     private bool _IsHeld;
     private Vector3 _dockedLocalPosition;
-    Ray ray;
+    private Ray ray;
+    private IDropTarget _currentTarget, _newTarget;
 
     private Sequence _hoverSequence;            //This needs to be its own sequence in order to pause it when a card is being dragged
 
@@ -56,23 +56,44 @@ public class PhysicalCard : MonoBehaviour,
     public void OnDrag(PointerEventData eventData)
     {
         gameObject.transform.position += (Vector3)eventData.delta;
-
-        ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
-
-        if (Physics.Raycast(ray, out RaycastHit hit, _dropTargetMask))
-        {
-            if (hit.collider.gameObject.GetComponentInParent<IDropTarget>() != null)
-            {
-                Debug.Log("howdy");
-            }
-        }
+        CheckCardTargeting();
+        
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
         _IsHeld = false;
+        if (_currentTarget != null)
+        {
+            _currentTarget.OnDrop(_associatedCard);
+            Player.Instance.DiscardCard(_associatedCard, this);
+        }
+        else
+        {
+            gameObject.transform.DOLocalMove(_dockedLocalPosition, 0.5f);
+        }
+    }
 
-        gameObject.transform.DOLocalMove(_dockedLocalPosition, 0.5f);
+    private void CheckCardTargeting()
+    {
+        ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
+
+        if (Physics.Raycast(ray, out RaycastHit hit, _dropTargetMask))  //Check for potential drop target
+        {
+            _newTarget = hit.collider.gameObject.GetComponentInParent<IDropTarget>();
+
+            if (_newTarget != null && _newTarget != _currentTarget)     //If this is a new drop target, change the _current target
+            {
+                _currentTarget?.OnDragEndHover();
+                _currentTarget = _newTarget;
+                _currentTarget.OnDragStartHover();
+            }
+        }
+        else                                                            //If we are no longer hovering over any target
+        {
+            _currentTarget?.OnDragEndHover();
+            _currentTarget = null;
+        }
     }
 
     // -----------------
@@ -100,7 +121,6 @@ public class PhysicalCard : MonoBehaviour,
     {
         _dockedLocalPosition = position;
     }
-
 
     // -----------------
     // Get/Set

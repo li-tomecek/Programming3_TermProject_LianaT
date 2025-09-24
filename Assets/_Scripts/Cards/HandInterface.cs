@@ -62,6 +62,8 @@ public class HandInterface : MonoBehaviour
     {
         _physicalCards.Remove(card);
         card.gameObject.SetActive(false);   //To put it back into the pool
+
+        RefreshCardPositions();
     }
 
     private void RegisterCardEvents(PhysicalCard card)
