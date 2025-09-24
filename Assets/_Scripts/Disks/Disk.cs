@@ -13,22 +13,24 @@ public class Disk : DropTarget
     private Card _activeCard;
 
     private SpellComponent[] _spellList;
+    private SpellComponent _activeSpell;        //the spell in the 'FRONT' position
 
     void Awake()
     {
         _spellList = gameObject.GetComponentsInChildren<SpellComponent>();
+        _activeSpell = FindSpellAtFront();
     }
 
     //-----------------------------
     //          Rotation
     //-----------------------------
     #region 
-    public void RotateToFront(SpellPosition position)
+    public void RotateToFront(SpellComponent toFront)
     {
         if (!_isInteractable)
             return;
 
-        if (position == SpellPosition.Left)
+        if (toFront.SpellPosition == SpellPosition.Left)
         {
             foreach (SpellComponent spell in _spellList)
                 spell.RotateRight();
@@ -38,7 +40,7 @@ public class Disk : DropTarget
             .OnUpdate(UpdateAllSprites);
 
         }
-        else if (position == SpellPosition.Right)
+        else if (toFront.SpellPosition == SpellPosition.Right)
         {
             foreach (SpellComponent spell in _spellList)
                 spell.RotateLeft();
@@ -48,6 +50,8 @@ public class Disk : DropTarget
             .OnUpdate(UpdateAllSprites);
 
         }
+
+        _activeSpell = toFront;
     }
 
     public void UpdateAllSprites()
@@ -86,8 +90,9 @@ public class Disk : DropTarget
     #region 
     public void ApplyCard(Card card) { _activeCard = card; }
     public Card GetActiveCard() { return _activeCard; }
+    public SpellComponent GetActiveSpell() { return _activeSpell; }
 
-    public SpellComponent GetSpellAtFront()
+    public SpellComponent FindSpellAtFront()
     {
         foreach (SpellComponent spell in _spellList)
         {
@@ -97,5 +102,6 @@ public class Disk : DropTarget
 
         throw new Exception("There are no spells set to the front position!");
     }
+
     #endregion
 }

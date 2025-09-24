@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem.XR.Haptics;
+using UnityEngine.UI;
 
 public class StateManager : Singleton<StateManager>
 {

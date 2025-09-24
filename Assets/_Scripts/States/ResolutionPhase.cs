@@ -4,6 +4,7 @@ public class ResolutionPhase : IState
 {
     public void Enter()
     {
+        Debug.Log("Resolution phase begun");
         //1. Rotate opponent's disks (random for now)
 
         //2. Apply any "OnStart" cards

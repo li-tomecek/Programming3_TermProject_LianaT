@@ -23,7 +23,7 @@ public class SpellComponent : MonoBehaviour, IClickable
     public void OnClick()
     {
         if (_isInteractable)
-            gameObject.GetComponentInParent<Disk>()?.RotateToFront(_spellPosition);
+            gameObject.GetComponentInParent<Disk>()?.RotateToFront(this);
     }
 
     public void RotateLeft()
@@ -63,4 +63,5 @@ public class SpellComponent : MonoBehaviour, IClickable
     }
 
     public void SetInteractable(bool interactable) { _isInteractable = interactable; }
+    public bool IsInteractable() { return _isInteractable; }
 }
