@@ -17,7 +17,7 @@ public class PhysicalCard : MonoBehaviour,
     private bool _IsHeld;
     private Vector3 _dockedLocalPosition;
     private Ray ray;
-    private IDropTarget _currentTarget, _newTarget;
+    private DropTarget _currentTarget, _newTarget;
 
     private Sequence _hoverSequence;            //This needs to be its own sequence in order to pause it when a card is being dragged
 
@@ -63,7 +63,7 @@ public class PhysicalCard : MonoBehaviour,
     public void OnEndDrag(PointerEventData eventData)
     {
         _IsHeld = false;
-        if (_currentTarget != null)
+        if (_currentTarget != null && _currentTarget.IsInteractable())
         {
             _currentTarget.OnDrop(_associatedCard);
             Player.Instance.DiscardCard(_associatedCard, this);
@@ -80,13 +80,13 @@ public class PhysicalCard : MonoBehaviour,
 
         if (Physics.Raycast(ray, out RaycastHit hit, _dropTargetMask))  //Check for potential drop target
         {
-            _newTarget = hit.collider.gameObject.GetComponentInParent<IDropTarget>();
+            _newTarget = hit.collider.gameObject.GetComponentInParent<DropTarget>();
 
             if (_newTarget != null && _newTarget != _currentTarget)     //If this is a new drop target, change the _current target
             {
                 _currentTarget?.OnDragEndHover();
                 _currentTarget = _newTarget;
-                _currentTarget.OnDragStartHover();
+                _currentTarget.OnDragStartHover(_associatedCard);
             }
         }
         else                                                            //If we are no longer hovering over any target
