@@ -1,9 +1,17 @@
 using UnityEngine;
 
-[RequireComponent(typeof(PhysicalCard))]
-public class Card : MonoBehaviour
+
+[CreateAssetMenu(fileName = "NewCard", menuName = "ScriptableObjects/Cards")]
+public class Card : ScriptableObject, IDroppable
 {
-    // I think I should make this into a scriptable object and make sub-classes like my skills
     public string cardName;
     public string cardDescription;
+
+    public CardType _type;
+
+    public virtual void Play(Disk _targetDisk)
+    {
+        //To be overriden by different card types
+        Debug.Log($"Applied card effect to {_targetDisk}");
+    }
 }

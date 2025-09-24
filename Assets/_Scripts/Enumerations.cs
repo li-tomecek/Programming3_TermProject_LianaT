@@ -16,3 +16,14 @@ public enum SpellType
     Dark,
     Arcane
 }
+
+/*
+    CARD-RELATED ENUMERATIONS
+*/
+
+public enum CardType
+{
+    OnStart,
+    OnWin,
+    OnLoss
+}

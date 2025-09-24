@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class SpellComponent : MonoBehaviour, Clickable
+public class SpellComponent : MonoBehaviour, IClickable
 {
     [SerializeField] private SpriteRenderer _sprite;
     [SerializeField] private bool _isInteractable = true;
@@ -15,12 +15,10 @@ public class SpellComponent : MonoBehaviour, Clickable
     public SpellPosition SpellPosition => _spellPosition;
     public SpellType SpellType => _spellType;
 
-
     public void Awake()
     {
         gameObject.transform.LookAt(Camera.main.transform, Vector3.up);
     }
-
 
     public void OnClick()
     {
