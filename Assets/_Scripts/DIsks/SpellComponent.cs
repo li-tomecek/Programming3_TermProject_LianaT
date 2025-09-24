@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class SpellComponent : MonoBehaviour, Clickable
+public class SpellComponent : MonoBehaviour, IClickable
 {
     [SerializeField] private SpriteRenderer _sprite;
     [SerializeField] private bool _isInteractable = true;

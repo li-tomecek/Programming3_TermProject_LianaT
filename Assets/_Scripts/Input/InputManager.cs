@@ -20,12 +20,16 @@ public class InputManager : Singleton<InputManager>
         ClickAction.performed += OnClickPerformed;
     }
 
+    void OnDisable()
+    {
+        _actions.Gameplay.Disable();
+    }
+
     private void OnClickPerformed(InputAction.CallbackContext context)
     {
         Ray ray = _mainCamera.ScreenPointToRay(Mouse.current.position.ReadValue());
 
         if (Physics.Raycast(ray, out RaycastHit hit))
-            hit.collider.gameObject.GetComponent<Clickable>()?.OnClick();
-
+            hit.collider.gameObject.GetComponent<IClickable>()?.OnClick();
     }
 }

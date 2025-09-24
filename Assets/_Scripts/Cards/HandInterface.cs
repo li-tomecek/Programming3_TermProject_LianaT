@@ -11,9 +11,9 @@ public class HandInterface : MonoBehaviour
     private RectTransform _rectTransform;
 
     //Hand
-    private const int MAX_HAND_SIZE = 5;
     private List<PhysicalCard> _physicalCards = new List<PhysicalCard>();
     private ObjectPool _physicalCardPool;
+    [SerializeField] private int _poolAmount = 5;
     [SerializeField] GameObject PhysCardPrefab;
 
     //Info Card
@@ -22,16 +22,14 @@ public class HandInterface : MonoBehaviour
     [SerializeField] private float _infoCardY = 100f;
     [SerializeField] private float _infoCardTransitionTime = 0.5f;
     private DG.Tweening.Sequence infoCardSeq;
-
     private bool isHoveringCard;
     
     //-----------------------------------------------------
     //-----------------------------------------------------
-
     private void Start()
     {
         _rectTransform = GetComponent<RectTransform>();
-        _physicalCardPool = new ObjectPool(PhysCardPrefab, MAX_HAND_SIZE, this.gameObject);   //create pool of card prefabs
+        _physicalCardPool = new ObjectPool(PhysCardPrefab, _poolAmount, this.gameObject);   //create pool of card prefabs
 
         //InfoCard
         _infoCard.SetActive(false);
@@ -42,19 +40,22 @@ public class HandInterface : MonoBehaviour
         infoCardSeq.SetAutoKill(false);
     }
 
+#region Hand Management
     //-------------------------------
     //        Managing Hand
     //-------------------------------
     public void AddPhysicalCardToHand(Card card)
     {
-        if (_physicalCards.Count >= MAX_HAND_SIZE)
-            throw new Exception("Trying to add cards to a full hand!");
+        if (_physicalCards.Count >= _poolAmount)
+            throw new Exception("There are not enough pooled cards!");
 
 
         PhysicalCard temp = _physicalCardPool.GetActivePooledObject().GetComponent<PhysicalCard>();
         temp.SetAssociatedCard(card);
         RegisterCardEvents(temp);
         _physicalCards.Add(temp);
+
+        RefreshCardPositions();
     }
 
     public void RemovePhysicalCardFromHand(PhysicalCard card)
@@ -69,7 +70,7 @@ public class HandInterface : MonoBehaviour
         card.HoverEndEvent += HideInfoCard;
     }
 
-    public void SetCardPositionsInHand()
+    public void RefreshCardPositions()
     {
         if (_physicalCards.Count == 0) return;
 
@@ -83,10 +84,10 @@ public class HandInterface : MonoBehaviour
             _physicalCards[i].gameObject.transform.localPosition = newPosition;
             _physicalCards[i].SetDockedPosition(newPosition);
         }
-
-        Debug.Log("reset hand card positions");
     }
+#endregion
 
+#region Info Card
     //-------------------------------
     //  Managing Enlarged Info Card
     //-------------------------------
@@ -95,7 +96,7 @@ public class HandInterface : MonoBehaviour
     {
         isHoveringCard = true;
         _infoCard.GetComponentInChildren<PhysicalCard>().SetDisplayInformation(card);
-        
+
         if (!_infoCard.activeSelf)
         {
             _infoCard.SetActive(true);
@@ -119,5 +120,5 @@ public class HandInterface : MonoBehaviour
             _infoCard.SetActive(false);
         }
     }
-
+#endregion
 }

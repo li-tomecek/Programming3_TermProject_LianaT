@@ -2,18 +2,22 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using DG.Tweening;
 using TMPro;
+using UnityEngine.InputSystem;
+using UnityEditor.Experimental.GraphView;
 
 public class PhysicalCard : MonoBehaviour,
     IPointerExitHandler, IPointerEnterHandler,
     IBeginDragHandler, IDragHandler, IEndDragHandler
 {
-    [SerializeField] private TMP_Text nameText;
-    [SerializeField] private TMP_Text descriptionText;
+    [SerializeField] private TMP_Text _nameText;
+    [SerializeField] private TMP_Text _descriptionText;
+    [SerializeField] private LayerMask _dropTargetMask;
 
     private Card _associatedCard;
 
     private bool _IsHeld;
     private Vector3 _dockedLocalPosition;
+    Ray ray;
 
     private Sequence _hoverSequence;            //This needs to be its own sequence in order to pause it when a card is being dragged
 
@@ -35,8 +39,8 @@ public class PhysicalCard : MonoBehaviour,
 
     public void SetDisplayInformation(Card card)
     {
-        nameText.text = card.cardName;
-        descriptionText.text = card.cardDescription;
+        _nameText.text = card.cardName;
+        _descriptionText.text = card.cardDescription;
     }
 
     // -----------------
@@ -52,6 +56,16 @@ public class PhysicalCard : MonoBehaviour,
     public void OnDrag(PointerEventData eventData)
     {
         gameObject.transform.position += (Vector3)eventData.delta;
+
+        ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
+
+        if (Physics.Raycast(ray, out RaycastHit hit, _dropTargetMask))
+        {
+            if (hit.collider.gameObject.GetComponentInParent<IDropTarget>() != null)
+            {
+                Debug.Log("howdy");
+            }
+        }
     }
 
     public void OnEndDrag(PointerEventData eventData)

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public interface Clickable
+public interface IClickable
 {
     public void OnClick();
 }

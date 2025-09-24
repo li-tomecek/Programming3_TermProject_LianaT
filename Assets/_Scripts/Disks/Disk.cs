@@ -1,8 +1,10 @@
 using System.Data.Common;
+using System.Transactions;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class Disk : MonoBehaviour
+public class Disk : MonoBehaviour, IDropTarget
 {
     [SerializeField] private Disk _targetDisk;
     [SerializeField] private float _timeToRotate = 0.6f;
@@ -25,7 +27,7 @@ public class Disk : MonoBehaviour
     {
         if (!_isInteractable)
             return;
-            
+
         if (position == SpellPosition.Left)
         {
             foreach (SpellComponent spell in _spellList)
@@ -56,10 +58,33 @@ public class Disk : MonoBehaviour
         }
     }
 
+
+    //-----------------------------
+    //      Drag and Drop        
+    //-----------------------------
+
+    public void OnDragStartHover()
+    {
+        //highlight disk here
+        Debug.Log($"Started hovering over {gameObject.name}");
+    }
+
+    public void OnDragEndHover()
+    {
+        //stop highlighting disk here
+        Debug.Log($"Stopped hovering over {gameObject.name}");
+    }
+
+    public void OnDrop(IDroppable droppedObject)
+    {
+        if (droppedObject is Card)
+            _activeCard = (Card)droppedObject;
+    }
+
     //-----------------------------
     //      Getters/Setters         
     //-----------------------------
-    
+
     public void ApplyCard(Card card) { _activeCard = card; }
     public Card GetActiveCard() { return _activeCard; }
 
