@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public abstract class Participant : MonoBehaviour
@@ -12,4 +13,6 @@ public abstract class Participant : MonoBehaviour
         Health -= damageDealt;
         Health = Math.Max(0, Health);
     }
+
+    public List<Disk> GetDisks() { return Disks; }
 }

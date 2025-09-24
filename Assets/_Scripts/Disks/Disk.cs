@@ -1,3 +1,4 @@
+using System;
 using System.Data.Common;
 using System.Transactions;
 using DG.Tweening;
@@ -21,7 +22,7 @@ public class Disk : DropTarget
     //-----------------------------
     //          Rotation
     //-----------------------------
-
+    #region 
     public void RotateToFront(SpellPosition position)
     {
         if (!_isInteractable)
@@ -56,12 +57,12 @@ public class Disk : DropTarget
             spell.gameObject.transform.LookAt(Camera.main.transform, Vector3.up);
         }
     }
-
+    #endregion
 
     //-----------------------------
     //      Drag and Drop        
     //-----------------------------
-
+    #region
     public override void OnDragStartHover(IDroppable droppedObject)
     {
         //highlight disk here (if object is card and disk is interactable)
@@ -77,11 +78,24 @@ public class Disk : DropTarget
         if (droppedObject is Card && _isInteractable)
             _activeCard = (Card)droppedObject;
     }
+    #endregion
 
     //-----------------------------
     //      Getters/Setters         
     //-----------------------------
-
+    #region 
     public void ApplyCard(Card card) { _activeCard = card; }
     public Card GetActiveCard() { return _activeCard; }
+
+    public SpellComponent GetSpellAtFront()
+    {
+        foreach (SpellComponent spell in _spellList)
+        {
+            if (spell.SpellPosition == SpellPosition.Front)
+                return spell;
+        }
+
+        throw new Exception("There are no spells set to the front position!");
+    }
+    #endregion
 }

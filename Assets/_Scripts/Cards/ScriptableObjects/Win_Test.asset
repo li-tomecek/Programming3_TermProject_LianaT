@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cdac6dfb751da88448da0e7f6d547987, type: 3}
-  m_Name: TestCard1
+  m_Name: Win_Test
   m_EditorClassIdentifier: 
-  cardName: TEST 1
-  cardDescription: goo goo
-  _type: 0
+  cardName: WIN Test
+  cardDescription: If duel is won, deal increased damage.
+  _type: 1

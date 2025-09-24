@@ -738,15 +738,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff4c836e7b893624f99661f13883cfd4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Disks:
-  - {fileID: 2013631610}
-  - {fileID: 1946334414}
+  Disks: []
   Health: 100
   _deck:
   - {fileID: 11400000, guid: a77cf91b7d01cbc4c99871729850f2cf, type: 2}
   - {fileID: 11400000, guid: a77cf91b7d01cbc4c99871729850f2cf, type: 2}
   - {fileID: 11400000, guid: 34cfd2376ea0180449e2ba4d8de53b84, type: 2}
   - {fileID: 11400000, guid: 34cfd2376ea0180449e2ba4d8de53b84, type: 2}
+  - {fileID: 11400000, guid: 78493d60816593a4aafa21b408f8c997, type: 2}
+  - {fileID: 11400000, guid: 78493d60816593a4aafa21b408f8c997, type: 2}
   _hand: []
   _handInterface: {fileID: 410746715}
 --- !u!4 &463146807
@@ -1175,9 +1175,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e58274effc3e32498806300400189f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Disks:
-  - {fileID: 1380142050}
-  - {fileID: 1424885491}
+  Disks: []
   Health: 100
 --- !u!4 &1690669754
 Transform:

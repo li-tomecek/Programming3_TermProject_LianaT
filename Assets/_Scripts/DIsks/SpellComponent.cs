@@ -43,7 +43,7 @@ public class SpellComponent : MonoBehaviour, IClickable
                 break;
         }
     }
-    
+
     public void RotateRight()
     {
         switch (_spellPosition)
@@ -61,4 +61,6 @@ public class SpellComponent : MonoBehaviour, IClickable
                 break;
         }
     }
+
+    public void SetInteractable(bool interactable) { _isInteractable = interactable; }
 }

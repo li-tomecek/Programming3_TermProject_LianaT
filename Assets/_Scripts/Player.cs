@@ -28,13 +28,13 @@ public class Player : Participant
 
     void Start()
     {
-        for (int i = 0; (i < MAX_HAND_SIZE && _deck.Count > 0); i++)
+        for (int i = 0; (i < MAX_HAND_SIZE-1 && _deck.Count > 0); i++)
         {
-            DrawNewCard();
+            TryDrawNewCard();
         }
     }
 
-    public void DrawNewCard()
+    public void TryDrawNewCard()
     {
         if (_deck.Count == 0)
             ShuffleDeck();
