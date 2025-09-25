@@ -1,6 +1,4 @@
 using UnityEngine;
-using UnityEngine.InputSystem.XR.Haptics;
-using UnityEngine.UI;
 
 public class StateManager : Singleton<StateManager>
 {
@@ -13,7 +11,6 @@ public class StateManager : Singleton<StateManager>
     public IState CurrentState => _currentState;
     public PreparationPhase PreparationPhase => _prepPhase;
     public ResolutionPhase ResolutionPhase => _resolutionPhase;
-
 
     void Start()
     {

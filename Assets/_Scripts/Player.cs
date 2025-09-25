@@ -49,7 +49,7 @@ public class Player : Participant
 
     private void ShuffleDeck()
     {
-        _deck = _discardPile;
+        _deck.AddRange(_discardPile);
         _discardPile.Clear();
     }
 

@@ -24,7 +24,7 @@ public class PreparationPhase : IState
 
     public void Update()
     {
-        // Wait for player to hit "ready" after rotating disks and applying up to one card per disk
+        //Wait for player to hit "ready" after rotating disks and applying up to one card per disk
         //Note: may be better to use events rather than check every frame.
         if (_readyToStartTurn)
             return;
@@ -35,7 +35,7 @@ public class PreparationPhase : IState
             InterfaceManager.Instance.ReadyButton.gameObject.SetActive(true);
         }
     }
-    
+
     public void Exit()
     {
         InterfaceManager.Instance.ReadyButton.gameObject.SetActive(false);
@@ -44,7 +44,7 @@ public class PreparationPhase : IState
         foreach (Disk playerDisk in Player.Instance.GetDisks())
         {
             playerDisk.SetInteractable(false);
-            playerDisk.GetActiveSpell().SetInteractable(true);
+            playerDisk.ResetSpellInteractability();
         }
     }
 }

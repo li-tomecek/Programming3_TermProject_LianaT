@@ -1,15 +1,20 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class SpellComponent : MonoBehaviour, IClickable
 {
-    [SerializeField] private SpriteRenderer _sprite;
-    [SerializeField] private bool _isInteractable = true;
+    [Header("Sprite")]
+    [SerializeField] SpriteRenderer _sprite;
+    [SerializeField] bool _isInteractable = true;
+    [SerializeField] float _disabledAlpha = 0.5f;
+    private Color _spriteColor = Color.white;
 
-    [SerializeField] private SpellPosition _spellPosition;
-    [SerializeField] private SpellType _spellType;
+    [Header("Spell")]  
+    [SerializeField] SpellPosition _spellPosition;
+    [SerializeField] SpellType _spellType;
 
-    public bool IsRotating;
+    [DoNotSerialize] public bool IsRotating;
 
     // Getters
     public SpellPosition SpellPosition => _spellPosition;
@@ -18,6 +23,7 @@ public class SpellComponent : MonoBehaviour, IClickable
     public void Awake()
     {
         gameObject.transform.LookAt(Camera.main.transform, Vector3.up);
+        _sprite.color = _spriteColor;
     }
 
     public void OnClick()
@@ -62,6 +68,20 @@ public class SpellComponent : MonoBehaviour, IClickable
         }
     }
 
-    public void SetInteractable(bool interactable) { _isInteractable = interactable; }
     public bool IsInteractable() { return _isInteractable; }
+    public void SetInteractable(bool interactable)
+    {
+        _isInteractable = interactable;
+
+        if (interactable)
+        {
+            _spriteColor.a = 1f;
+            _sprite.color = _spriteColor;
+        }
+        else
+        {
+            _spriteColor.a = _disabledAlpha;
+            _sprite.color = _spriteColor;
+        }
+    }
 }

@@ -8,7 +8,7 @@ using UnityEngine.EventSystems;
 public class Disk : DropTarget
 {
     [SerializeField] private Disk _targetDisk;
-    [SerializeField] private float _timeToRotate = 0.6f;
+    public float TimeToRotate = 0.6f;
 
     private Card _activeCard;
 
@@ -24,7 +24,7 @@ public class Disk : DropTarget
     //-----------------------------
     //          Rotation
     //-----------------------------
-    #region 
+    #region
     public void RotateToFront(SpellComponent toFront)
     {
         if (!_isInteractable)
@@ -35,7 +35,7 @@ public class Disk : DropTarget
             foreach (SpellComponent spell in _spellList)
                 spell.RotateRight();
 
-            gameObject.transform.DOLocalRotate(new Vector3(0f, 120f, 0f), _timeToRotate)
+            gameObject.transform.DOLocalRotate(new Vector3(0f, 120f, 0f), TimeToRotate)
             .SetRelative(true)
             .OnUpdate(UpdateAllSprites);
 
@@ -45,7 +45,7 @@ public class Disk : DropTarget
             foreach (SpellComponent spell in _spellList)
                 spell.RotateLeft();
 
-            gameObject.transform.DOLocalRotate(new Vector3(0f, -120f, 0f), _timeToRotate)
+            gameObject.transform.DOLocalRotate(new Vector3(0f, -120f, 0f), TimeToRotate)
             .SetRelative(true)
             .OnUpdate(UpdateAllSprites);
 
@@ -101,6 +101,14 @@ public class Disk : DropTarget
         }
 
         throw new Exception("There are no spells set to the front position!");
+    }
+
+    public void ResetSpellInteractability()
+    {
+        foreach (SpellComponent spell in _spellList)
+        {
+            spell.SetInteractable(true);
+        }
     }
 
     #endregion
