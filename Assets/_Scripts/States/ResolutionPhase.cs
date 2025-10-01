@@ -1,16 +1,15 @@
-using UnityEngine;
-
 public class ResolutionPhase : IState
 {
     public void Enter()
     {
-        //1. Rotate opponent's disks (random for now)
+        //Apply any "OnStart" cards
+        foreach (Disk playerDisk in Player.Instance.GetDisks())
+        {
+            if (playerDisk.GetActiveCard()?.Type == CardType.OnStart)
+                playerDisk.GetActiveCard().Play();
+        }
 
-        //2. Apply any "OnStart" cards
-
-        //3. Resolve Combat
-
-        //4. Apply any "OnWin/OnLoss" cards
+        DuelManager.Instance.ResolveTurn();
     }
     
     public void Update()
@@ -20,6 +19,6 @@ public class ResolutionPhase : IState
     
     public void Exit()
     {
-        // Cleanup if needed
+        //Cleanup if needed
     }
 }

@@ -11,8 +11,6 @@ public class Player : Participant
     [SerializeField] private List<Card> _hand = new List<Card>();
     private List<Card> _discardPile = new List<Card>();
 
-    [SerializeField] private HandInterface _handInterface;
-
     void Awake()                //Because of inheritance, cannot use the singleton class. Maybe this could be changed later.
     {
         if (Instance == null)
@@ -26,38 +24,39 @@ public class Player : Participant
         }
     }
 
-    void Start()
+    protected override void Start()
     {
-        for (int i = 0; (i < MAX_HAND_SIZE && _deck.Count > 0); i++)
+        base.Start();
+        for (int i = 0; (i < MAX_HAND_SIZE - 1 && _deck.Count > 0); i++)
         {
-            DrawNewCard();
+            TryDrawNewCard();
         }
     }
 
-    public void DrawNewCard()
+    public void TryDrawNewCard()
     {
         if (_deck.Count == 0)
-            ShuffleDeck();
+            ReShuffleDeck();
 
         if (_hand.Count < MAX_HAND_SIZE)
         {
             int rand = Random.Range(0, _deck.Count);
             _hand.Add(_deck[rand]);
-            _handInterface.AddPhysicalCardToHand(_deck[rand]);
+            InterfaceManager.Instance.HandInterface.AddPhysicalCardToHand(_deck[rand]);
 
             _deck.RemoveAt(rand);
         }
     }
 
-    private void ShuffleDeck()
+    private void ReShuffleDeck()
     {
-        _deck = _discardPile;
+        _deck.AddRange(_discardPile);
         _discardPile.Clear();
     }
 
     public void DiscardCard(Card card, PhysicalCard physCard)
     {
-        _handInterface.RemovePhysicalCardFromHand(physCard);
+        InterfaceManager.Instance.HandInterface.RemovePhysicalCardFromHand(physCard);
         _hand.Remove(card);
         _discardPile.Add(card);
     }

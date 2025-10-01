@@ -284,7 +284,6 @@ GameObject:
   - component: {fileID: 296581228075837691}
   - component: {fileID: 8444532063230533436}
   - component: {fileID: 5126909197318348417}
-  - component: {fileID: 5068888742789884775}
   m_Layer: 5
   m_Name: PhysicalCard
   m_TagString: Untagged
@@ -368,24 +367,3 @@ MonoBehaviour:
   _dropTargetMask:
     serializedVersion: 2
     m_Bits: 64
---- !u!65 &5068888742789884775
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3821288318099898900}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 212.2455, y: 307.4834, z: 359.17422}
-  m_Center: {x: 2.2029953, y: 146.17126, z: 2.8393707}
