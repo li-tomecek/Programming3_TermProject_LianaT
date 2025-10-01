@@ -24,9 +24,10 @@ public class Player : Participant
         }
     }
 
-    void Start()
+    protected override void Start()
     {
-        for (int i = 0; (i < MAX_HAND_SIZE-1 && _deck.Count > 0); i++)
+        base.Start();
+        for (int i = 0; (i < MAX_HAND_SIZE - 1 && _deck.Count > 0); i++)
         {
             TryDrawNewCard();
         }
@@ -35,7 +36,7 @@ public class Player : Participant
     public void TryDrawNewCard()
     {
         if (_deck.Count == 0)
-            ShuffleDeck();
+            ReShuffleDeck();
 
         if (_hand.Count < MAX_HAND_SIZE)
         {
@@ -47,7 +48,7 @@ public class Player : Participant
         }
     }
 
-    private void ShuffleDeck()
+    private void ReShuffleDeck()
     {
         _deck.AddRange(_discardPile);
         _discardPile.Clear();

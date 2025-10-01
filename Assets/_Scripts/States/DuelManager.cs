@@ -17,7 +17,7 @@ public class DuelManager : Singleton<DuelManager>
     // ---------------------
     IEnumerator RotateDisksAndCheckDuels()
     {
-        //Rotate opponent's disks (random for now)
+        //Rotate opponent's disks
         yield return Opponent.Instance.ChooseRotations();   //wait for opponents disks to rotate
 
         _routines.Add(StartCoroutine(ResolveDuel(0)));
@@ -34,23 +34,56 @@ public class DuelManager : Singleton<DuelManager>
 
     IEnumerator ResolveDuel(int diskIndex)
     {
-        Disk winner, loser;
+        Disk winner, loser = null;
+        bool duelTied = false;
+
         //Compare disks
-        //TODO
-        winner = Player.Instance.GetDisks()[diskIndex];     //TEMP
-        loser = Opponent.Instance.GetDisks()[diskIndex];
+        winner = GetWinner(Player.Instance.GetDisks()[diskIndex], Opponent.Instance.GetDisks()[diskIndex]);
+
+        if (winner == null)
+            duelTied = true;
+        else
+            loser = (winner == Player.Instance.GetDisks()[diskIndex]) ? Opponent.Instance.GetDisks()[diskIndex] : Player.Instance.GetDisks()[diskIndex];
 
         //Play any animation here!
         yield return new WaitForSeconds(0.5f);      //temp
 
         //Apply 'OnWin' cards
-        if (winner.GetActiveCard()?.Type == CardType.OnWin)
+        if (!duelTied && winner.GetActiveCard()?.Type == CardType.OnWin)
             winner.GetActiveCard().Play();
 
         //Apply 'OnLoss' cards
-        if (loser.GetActiveCard()?.Type == CardType.OnLoss)
-            loser.GetActiveCard().Play(); 
+        if (!duelTied && loser.GetActiveCard()?.Type == CardType.OnLoss)
+            loser.GetActiveCard().Play();
 
         //Deal damage
+        if(!duelTied)
+            loser.GetParentParticipant().TakeDamage(winner.GetParentParticipant().GetTotalDamage());
+    }
+
+    private Disk GetWinner(Disk first, Disk second)
+    {
+        if (first.GetActiveSpell().SpellType == second.GetActiveSpell().SpellType)
+            return null;        //tied
+
+        switch (first.GetActiveSpell().SpellType)
+        {
+            case SpellType.Holy:
+                if (second.GetActiveSpell().SpellType == SpellType.Dark)
+                    return first;
+                break;
+
+            case SpellType.Dark:
+                if (second.GetActiveSpell().SpellType == SpellType.Arcane)
+                    return first;
+                break;
+
+            case SpellType.Arcane:
+                if (second.GetActiveSpell().SpellType == SpellType.Holy)
+                    return first;
+                break;
+        }
+
+        return second;        //second disk won the matchup
     }
 }

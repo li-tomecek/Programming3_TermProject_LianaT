@@ -1,9 +1,6 @@
 using System;
-using System.Data.Common;
-using System.Transactions;
 using DG.Tweening;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 public class Disk : DropTarget
 {
@@ -91,6 +88,10 @@ public class Disk : DropTarget
     public void ApplyCard(Card card) { _activeCard = card; }
     public Card GetActiveCard() { return _activeCard; }
     public SpellComponent GetActiveSpell() { return _activeSpell; }
+    public Participant GetParentParticipant()
+    {
+        return gameObject.GetComponentInParent<Participant>();
+    }
 
     public SpellComponent FindSpellAtFront()
     {
@@ -102,7 +103,6 @@ public class Disk : DropTarget
 
         throw new Exception("There are no spells set to the front position!");
     }
-
     public void ResetSpellInteractability()
     {
         foreach (SpellComponent spell in _spellList)
@@ -110,6 +110,5 @@ public class Disk : DropTarget
             spell.SetInteractable(true);
         }
     }
-
     #endregion
 }

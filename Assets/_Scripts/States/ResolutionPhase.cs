@@ -1,6 +1,3 @@
-using System;
-using UnityEngine;
-
 public class ResolutionPhase : IState
 {
     public void Enter()
@@ -22,6 +19,6 @@ public class ResolutionPhase : IState
     
     public void Exit()
     {
-        // Cleanup if needed
+        //Cleanup if needed
     }
 }

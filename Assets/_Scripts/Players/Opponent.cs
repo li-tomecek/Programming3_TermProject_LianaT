@@ -27,10 +27,13 @@ public class Opponent : Participant
         foreach (Disk disk in Disks)
         {
             rotationTime = Math.Max(rotationTime, disk.TimeToRotate);
+            SpellComponent[] spells = disk.gameObject.GetComponentsInChildren<SpellComponent>();
 
+            //For now, the opponent will randomly choose one of the non-active spells for each disk.
+            //Enemy AI would go here
             do
             {
-                chosenSpell = disk.gameObject.GetComponentsInChildren<SpellComponent>()[UnityEngine.Random.Range(0, 3)];
+                chosenSpell = spells[UnityEngine.Random.Range(0, spells.Length)];
 
             } while (chosenSpell == disk.GetActiveSpell());
 
