@@ -23,7 +23,6 @@ public abstract class Participant : MonoBehaviour
     {
         Health -= damageDealt;
         Health = Math.Max(0, Health);
-        Debug.Log($"{name} took {damageDealt} damage!");
 
         OnHealthChanged?.Invoke(Health);
     }
@@ -38,4 +37,5 @@ public abstract class Participant : MonoBehaviour
     {
         return (int)(BaseDamage * DamageMultiplier);
     }
+    public int GetMaxHealth() { return MaxHealth; }
 }
