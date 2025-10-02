@@ -7,6 +7,7 @@ public class Card : ScriptableObject, IDroppable
     public string cardName;
     public string cardDescription;
 
+    public TargetType _targetType;
     public CardType Type;
 
     public virtual void Play()
