@@ -9,10 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cdac6dfb751da88448da0e7f6d547987, type: 3}
-  m_Name: Start_Test
+  m_Script: {fileID: 11500000, guid: aaac077a62e59fe4fad21652ecf903a0, type: 3}
+  m_Name: Start_MinorHeal
   m_EditorClassIdentifier: 
-  cardName: START Test
-  cardDescription: On duel start, does nothing!
+  cardName: Refresh
+  cardDescription: On dual start, restore 10HP.
   _targetType: 0
   Type: 0
+  _damage: -10

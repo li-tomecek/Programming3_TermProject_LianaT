@@ -21,9 +21,10 @@ public abstract class Participant : MonoBehaviour
     public void TakeDamage(int damageDealt)
     {
         Health -= damageDealt;
-        Health = Math.Max(0, Health);
+        Health = Math.Clamp(Health, 0, MaxHealth);
 
         OnHealthChanged?.Invoke(Health);
+        Debug.Log($" {name} took {damageDealt} damage.\n Health: {Health}/{MaxHealth}");
     }
 
     public void HealDamage(int damageHealed)
@@ -39,4 +40,5 @@ public abstract class Participant : MonoBehaviour
         //return (int)(BaseDamage * DamageMultiplier);
     }
     public int GetMaxHealth() { return MaxHealth; }
+    public int GetCurrentHealth() { return Health; }
 }
