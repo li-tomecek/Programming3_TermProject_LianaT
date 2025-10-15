@@ -12,10 +12,17 @@ public class Disk : DropTarget
     private SpellComponent[] _spellList;
     private SpellComponent _activeSpell;        //the spell in the 'FRONT' position
 
+    private Participant _parentParticipant;
+    public bool IsPlayer { get; private set; }
+    private float _damageMultiplier = 1f;
+
     void Awake()
     {
         _spellList = gameObject.GetComponentsInChildren<SpellComponent>();
         _activeSpell = FindSpellAtFront();
+        _parentParticipant = gameObject.GetComponentInParent<Participant>();
+        
+        IsPlayer = _parentParticipant is Player;
     }
 
     //-----------------------------
@@ -80,6 +87,21 @@ public class Disk : DropTarget
             _activeCard = (Card)droppedObject;
     }
     #endregion
+    
+    //-----------------------------
+    //      Combat State       
+    //-----------------------------
+    public void PlayCard()
+    {
+        _activeCard?.Play(this);
+        _activeCard = null;
+    }
+    
+    public void ResetState()
+    {
+        _damageMultiplier = 1f;
+    }
+
 
     //-----------------------------
     //      Getters/Setters         
@@ -88,11 +110,17 @@ public class Disk : DropTarget
     public void ApplyCard(Card card) { _activeCard = card; }
     public Card GetActiveCard() { return _activeCard; }
     public SpellComponent GetActiveSpell() { return _activeSpell; }
-    public Participant GetParentParticipant()
+    public Participant GetParticipant()
     {
-        return gameObject.GetComponentInParent<Participant>();
+        return _parentParticipant;
+        //return gameObject.GetComponentInParent<Participant>();
     }
-
+    public float GetDamageMultiplier() { return _damageMultiplier; }
+    public void ApplyDamageMultiplier(float mult)
+    {
+        _damageMultiplier *= mult;  //We multiply and not directly set, as multiple multipliers may be added via different sounrces during one turn
+    }
+    public Disk GetOpposingDisk() { return _targetDisk; }
     public SpellComponent FindSpellAtFront()
     {
         foreach (SpellComponent spell in _spellList)

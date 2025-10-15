@@ -66,5 +66,5 @@
     "explorer.fileNesting.patterns": {
         "*.sln": "*.csproj"
     },
-    "dotnet.defaultSolution": "P3_TermProject.sln"
+    "dotnet.defaultSolution": "Programming3_TermProject_LianaT.sln"
 }

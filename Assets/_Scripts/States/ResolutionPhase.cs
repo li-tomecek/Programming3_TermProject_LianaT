@@ -6,7 +6,7 @@ public class ResolutionPhase : IState
         foreach (Disk playerDisk in Player.Instance.GetDisks())
         {
             if (playerDisk.GetActiveCard()?.Type == CardType.OnStart)
-                playerDisk.GetActiveCard().Play();
+                playerDisk.PlayCard();
         }
 
         DuelManager.Instance.ResolveTurn();

@@ -50,15 +50,19 @@ public class DuelManager : Singleton<DuelManager>
 
         //Apply 'OnWin' cards
         if (!duelTied && winner.GetActiveCard()?.Type == CardType.OnWin)
-            winner.GetActiveCard().Play();
+            winner.PlayCard();
 
         //Apply 'OnLoss' cards
         if (!duelTied && loser.GetActiveCard()?.Type == CardType.OnLoss)
-            loser.GetActiveCard().Play();
+            loser.PlayCard();
 
-        //Deal damage
-        if(!duelTied)
-            loser.GetParentParticipant().TakeDamage(winner.GetParentParticipant().GetTotalDamage());
+        //Deal damage & reset effects
+        if (!duelTied)
+        {
+            loser.GetParticipant().TakeDamage((int) (winner.GetParticipant().GetDamage() * winner.GetDamageMultiplier()));
+            loser.ResetState();
+            winner.ResetState();
+        }
     }
 
     private Disk GetWinner(Disk first, Disk second)
