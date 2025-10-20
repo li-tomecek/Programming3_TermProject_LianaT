@@ -19,6 +19,10 @@ public class ResolutionPhase : IState
     
     public void Exit()
     {
-        //Cleanup if needed
+        foreach (Disk disk in Player.Instance.GetDisks())
+            disk.ResetState();        
+        
+        foreach (Disk disk in Opponent.Instance.GetDisks())
+            disk.ResetState();
     }
 }

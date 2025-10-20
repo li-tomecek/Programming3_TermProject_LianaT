@@ -59,9 +59,7 @@ public class DuelManager : Singleton<DuelManager>
         //Deal damage & reset effects
         if (!duelTied)
         {
-            loser.GetParticipant().TakeDamage((int) (winner.GetParticipant().GetDamage() * winner.GetDamageMultiplier()));
-            loser.ResetState();
-            winner.ResetState();
+            loser.GetParticipant().TakeDamage((int)(winner.GetParticipant().GetDamage() * winner.GetDamageMultiplier()));
         }
     }
 

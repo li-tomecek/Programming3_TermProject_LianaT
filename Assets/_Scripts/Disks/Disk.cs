@@ -1,5 +1,6 @@
 using System;
 using DG.Tweening;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class Disk : DropTarget
@@ -15,6 +16,7 @@ public class Disk : DropTarget
     private Participant _parentParticipant;
     public bool IsPlayer { get; private set; }
     private float _damageMultiplier = 1f;
+    private bool _isRotationLocked;
 
     void Awake()
     {
@@ -56,6 +58,37 @@ public class Disk : DropTarget
         }
 
         _activeSpell = toFront;
+    }
+
+    public void RotateByType(SpellType type)
+    {
+        foreach (SpellComponent spell in _spellList)
+        {
+            if (spell.SpellType == type)
+            {
+                _isInteractable = true;
+                RotateToFront(spell);
+                _isInteractable = false;
+                return;
+            }
+        }
+    }
+    
+    public void RotateByPosition(SpellPosition positionToFront)
+    {
+        if (positionToFront == SpellPosition.Front)
+            return;
+        
+        foreach (SpellComponent spell in _spellList)
+        {
+            if (spell.SpellPosition == positionToFront)
+            {
+                _isInteractable = true;
+                RotateToFront(spell);
+                _isInteractable = false;
+                return;
+            }
+        }
     }
 
     public void UpdateAllSprites()
@@ -100,6 +133,8 @@ public class Disk : DropTarget
     public void ResetState()
     {
         _damageMultiplier = 1f;
+        _isRotationLocked = false;
+        //Debug.Log($"{name} locked: {_isRotationLocked}");
     }
 
 
@@ -138,5 +173,7 @@ public class Disk : DropTarget
             spell.SetInteractable(true);
         }
     }
+    public void LockRotation() { _isRotationLocked = true; }
+    public bool IsRotationLocked() { return _isRotationLocked; }
     #endregion
 }

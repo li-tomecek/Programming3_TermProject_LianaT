@@ -31,6 +31,9 @@ public class Opponent : Participant
 
             //For now, the opponent will randomly choose one of the non-active spells for each disk.
             //Enemy AI would go here
+            
+            if (disk.IsRotationLocked())
+                break;
             do
             {
                 chosenSpell = spells[UnityEngine.Random.Range(0, spells.Length)];

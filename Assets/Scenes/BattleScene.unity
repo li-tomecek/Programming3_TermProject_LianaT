@@ -758,6 +758,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: dc73d6752e894dc4286cb8d70467f991, type: 2}
   - {fileID: 11400000, guid: 21ac2a38427118f4f81bf1d9de92dbfd, type: 2}
   - {fileID: 11400000, guid: 21ac2a38427118f4f81bf1d9de92dbfd, type: 2}
+  - {fileID: 11400000, guid: 71e024f064408a44aa7b98d4c926c492, type: 2}
+  - {fileID: 11400000, guid: 71e024f064408a44aa7b98d4c926c492, type: 2}
+  - {fileID: 11400000, guid: 157313f7b50e6b94a83cb110b9e6b854, type: 2}
+  - {fileID: 11400000, guid: 157313f7b50e6b94a83cb110b9e6b854, type: 2}
   _hand: []
 --- !u!4 &463146807
 Transform:
