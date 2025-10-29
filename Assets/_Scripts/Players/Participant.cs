@@ -10,7 +10,6 @@ public abstract class Participant : MonoBehaviour
     [SerializeField] protected int MaxHealth = 100;
     [SerializeField] protected int BaseDamage = 15;
     protected int Health;
-    protected float DamageMultiplier = 1f;
 
     public event Action<int> OnHealthChanged;
 
@@ -22,20 +21,24 @@ public abstract class Participant : MonoBehaviour
     public void TakeDamage(int damageDealt)
     {
         Health -= damageDealt;
-        Health = Math.Max(0, Health);
+        Health = Math.Clamp(Health, 0, MaxHealth);
 
         OnHealthChanged?.Invoke(Health);
+        Debug.Log($" {name} took {damageDealt} damage.\n Health: {Health}/{MaxHealth}");
     }
 
     public void HealDamage(int damageHealed)
     {
         TakeDamage(-damageHealed);
     }
+
     // --------------------------------------------------
     public List<Disk> GetDisks() { return Disks; }
-    public int GetTotalDamage()
+    public int GetDamage()
     {
-        return (int)(BaseDamage * DamageMultiplier);
+        return BaseDamage;
+        //return (int)(BaseDamage * DamageMultiplier);
     }
     public int GetMaxHealth() { return MaxHealth; }
+    public int GetCurrentHealth() { return Health; }
 }

@@ -212,6 +212,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _sprite: {fileID: 2628526897111898786}
   _isInteractable: 1
+  _disabledAlpha: 0.25
   _spellPosition: 0
   _spellType: 0
   IsRotating: 0
@@ -339,6 +340,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _sprite: {fileID: 6432917655625437924}
   _isInteractable: 1
+  _disabledAlpha: 0.25
   _spellPosition: 1
   _spellType: 2
   IsRotating: 0
@@ -409,9 +411,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5c757ed03e4e6446bef3f912bc2cc2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _targetDisk: {fileID: 0}
-  _timeToRotate: 0.6
   _isInteractable: 0
+  _targetDisk: {fileID: 0}
+  TimeToRotate: 0.6
 --- !u!1 &4101510953101112205
 GameObject:
   m_ObjectHideFlags: 0
@@ -515,6 +517,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _sprite: {fileID: 1184638884614212626}
   _isInteractable: 1
+  _disabledAlpha: 0.25
   _spellPosition: 2
   _spellType: 1
   IsRotating: 0

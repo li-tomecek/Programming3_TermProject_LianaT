@@ -6,7 +6,7 @@ public class ResolutionPhase : IState
         foreach (Disk playerDisk in Player.Instance.GetDisks())
         {
             if (playerDisk.GetActiveCard()?.Type == CardType.OnStart)
-                playerDisk.GetActiveCard().Play();
+                playerDisk.PlayCard();
         }
 
         DuelManager.Instance.ResolveTurn();
@@ -19,6 +19,10 @@ public class ResolutionPhase : IState
     
     public void Exit()
     {
-        //Cleanup if needed
+        foreach (Disk disk in Player.Instance.GetDisks())
+            disk.ResetState();        
+        
+        foreach (Disk disk in Opponent.Instance.GetDisks())
+            disk.ResetState();
     }
 }

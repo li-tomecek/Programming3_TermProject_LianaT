@@ -21,16 +21,21 @@ public class HealthHUD : MonoBehaviour
     {
         //don't really need to pass totalHealth
         //_slider.value = (totalHealth / (float)_participant.GetMaxHealth());
-        StartCoroutine(AnimateSlider((totalHealth / (float)_participant.GetMaxHealth())));
+        StartCoroutine(AnimateSlider(((float) _participant.GetCurrentHealth() / (float)_participant.GetMaxHealth())));
     }
 
     private IEnumerator AnimateSlider(float endValue)
     {
-        float valuePerSecond = (_slider.value - endValue) / _timeToAnimate;
-        while (_slider.value > endValue)
+        float difference = (endValue - _slider.value);
+        float valuePerSecond = difference / _timeToAnimate;
+
+        while (Mathf.Abs(difference) > 0.01f)
         {
             yield return 0;
-            _slider.value -= Math.Min(valuePerSecond * Time.deltaTime, _slider.value);
+            _slider.value += valuePerSecond * Time.deltaTime;
+            difference = (endValue - _slider.value);
         }
+
+        Debug.Log(_slider.value);
     }
 }

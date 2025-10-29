@@ -27,3 +27,9 @@ public enum CardType
     OnWin,
     OnLoss
 }
+
+public enum TargetType
+{
+    Self,
+    Opponent
+}
