@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class StateManager : Singleton<StateManager>
@@ -14,7 +15,7 @@ public class StateManager : Singleton<StateManager>
 
     void Start()
     {
-        ChangeState(_prepPhase);
+        StartCoroutine(Setup());    //need to add a delay to make sure everyone's start functions have happened
     }
 
     void Update()
@@ -27,5 +28,11 @@ public class StateManager : Singleton<StateManager>
         _currentState?.Exit();
         _currentState = state;
         _currentState.Enter();
+    }
+
+    private IEnumerator Setup()
+    {
+        yield return new WaitForSeconds(0.5f);
+        ChangeState(_prepPhase);
     }
 }
