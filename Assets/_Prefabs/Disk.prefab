@@ -137,8 +137,8 @@ Transform:
   m_GameObject: {fileID: 2205591785059308133}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.59, z: 1.796}
-  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_LocalPosition: {x: 0, y: 0.9, z: 1.796}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 5077883233538946521}
@@ -186,8 +186,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 550776d5c4dde81439031f688b86accf, type: 3}
+  m_SortingOrder: 1
+  m_Sprite: {fileID: 21300000, guid: 9eba86fe008785f44a35fb18e9c3e856, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -210,9 +210,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc4a8a8d4b207174288bff310463fdcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _sprite: {fileID: 2628526897111898786}
+  _spriteRenderer: {fileID: 2628526897111898786}
+  _defaultSprite: {fileID: 21300000, guid: 9eba86fe008785f44a35fb18e9c3e856, type: 3}
+  _selectedSprite: {fileID: 21300000, guid: d02d871dd1c80f148b11c3690449bef5, type: 3}
+  _disabledSprite: {fileID: 21300000, guid: 2e9d9f0907cab2e4eb2b83833ee58f91, type: 3}
   _isInteractable: 1
-  _disabledAlpha: 0.25
+  _disabledAlpha: 0.5
   _spellPosition: 0
   _spellType: 0
   IsRotating: 0
@@ -265,8 +268,8 @@ Transform:
   m_GameObject: {fileID: 3329756336297477676}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.46464488, z: -0, w: 0.88549715}
-  m_LocalPosition: {x: -1.76, y: 0.59, z: -1.09}
-  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_LocalPosition: {x: -1.76, y: 0.9, z: -1.09}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 5077883233538946521}
@@ -314,8 +317,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 33edfc32fdc31974780b400063f33e89, type: 3}
+  m_SortingOrder: 1
+  m_Sprite: {fileID: 21300000, guid: 3218c60fb06504345822b663005cb9d8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -338,9 +341,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc4a8a8d4b207174288bff310463fdcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _sprite: {fileID: 6432917655625437924}
+  _spriteRenderer: {fileID: 6432917655625437924}
+  _defaultSprite: {fileID: 21300000, guid: 3218c60fb06504345822b663005cb9d8, type: 3}
+  _selectedSprite: {fileID: 21300000, guid: 3c08f9f7582d5c844aac521f3f665127, type: 3}
+  _disabledSprite: {fileID: 21300000, guid: ff50794753613d849bb329478ae3f7a7, type: 3}
   _isInteractable: 1
-  _disabledAlpha: 0.25
+  _disabledAlpha: 0.5
   _spellPosition: 1
   _spellType: 2
   IsRotating: 0
@@ -442,8 +448,8 @@ Transform:
   m_GameObject: {fileID: 4101510953101112205}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.5166675, z: -0, w: 0.8561862}
-  m_LocalPosition: {x: 1.79, y: 0.59, z: -0.96}
-  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_LocalPosition: {x: 1.79, y: 0.9, z: -0.96}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 5077883233538946521}
@@ -491,8 +497,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: bd715f2a7a7c1014f89b99ea4b20f944, type: 3}
+  m_SortingOrder: 1
+  m_Sprite: {fileID: 21300000, guid: 8f9c4b19e768130448a75c6473ce696a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -515,9 +521,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc4a8a8d4b207174288bff310463fdcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _sprite: {fileID: 1184638884614212626}
+  _spriteRenderer: {fileID: 1184638884614212626}
+  _defaultSprite: {fileID: 21300000, guid: 8f9c4b19e768130448a75c6473ce696a, type: 3}
+  _selectedSprite: {fileID: 21300000, guid: 25246587c83cda84a8f8ecb27b4c8c7e, type: 3}
+  _disabledSprite: {fileID: 21300000, guid: 73ca3964ff75b964ab87d46fad30fecd, type: 3}
   _isInteractable: 1
-  _disabledAlpha: 0.25
+  _disabledAlpha: 0.5
   _spellPosition: 2
   _spellType: 1
   IsRotating: 0
