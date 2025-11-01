@@ -138,7 +138,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.9, z: 1.796}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 5077883233538946521}
@@ -215,7 +215,7 @@ MonoBehaviour:
   _selectedSprite: {fileID: 21300000, guid: d02d871dd1c80f148b11c3690449bef5, type: 3}
   _disabledSprite: {fileID: 21300000, guid: 2e9d9f0907cab2e4eb2b83833ee58f91, type: 3}
   _isInteractable: 1
-  _disabledAlpha: 0.5
+  _disabledAlpha: 0.7
   _spellPosition: 0
   _spellType: 0
   IsRotating: 0
@@ -269,7 +269,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.46464488, z: -0, w: 0.88549715}
   m_LocalPosition: {x: -1.76, y: 0.9, z: -1.09}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 5077883233538946521}
@@ -346,7 +346,7 @@ MonoBehaviour:
   _selectedSprite: {fileID: 21300000, guid: 3c08f9f7582d5c844aac521f3f665127, type: 3}
   _disabledSprite: {fileID: 21300000, guid: ff50794753613d849bb329478ae3f7a7, type: 3}
   _isInteractable: 1
-  _disabledAlpha: 0.5
+  _disabledAlpha: 0.7
   _spellPosition: 1
   _spellType: 2
   IsRotating: 0
@@ -449,7 +449,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.5166675, z: -0, w: 0.8561862}
   m_LocalPosition: {x: 1.79, y: 0.9, z: -0.96}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 5077883233538946521}
@@ -526,7 +526,7 @@ MonoBehaviour:
   _selectedSprite: {fileID: 21300000, guid: 25246587c83cda84a8f8ecb27b4c8c7e, type: 3}
   _disabledSprite: {fileID: 21300000, guid: 73ca3964ff75b964ab87d46fad30fecd, type: 3}
   _isInteractable: 1
-  _disabledAlpha: 0.5
+  _disabledAlpha: 0.7
   _spellPosition: 2
   _spellType: 1
   IsRotating: 0

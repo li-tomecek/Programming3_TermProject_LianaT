@@ -15,10 +15,23 @@ public class DuelManager : Singleton<DuelManager>
     // ---------------------
     //      Coroutines
     // ---------------------
+
+    public IEnumerator RotateDisks()
+    {
+        _routines.Add(StartCoroutine(Opponent.Instance.ChooseRotations()));
+        _routines.Add(StartCoroutine(Player.Instance.RotateDisksToSelected()));
+
+        for (int i = 0; i < _routines.Count; i++)
+        {
+            yield return _routines[i];
+        }
+        _routines.Clear();
+    }
+
     IEnumerator RotateDisksAndCheckDuels()
     {
         //Rotate opponent's disks
-        yield return Opponent.Instance.ChooseRotations();   //wait for opponents disks to rotate
+        yield return RotateDisks();   //wait for opponents disks to rotate
 
         _routines.Add(StartCoroutine(ResolveDuel(0)));
         _routines.Add(StartCoroutine(ResolveDuel(1)));

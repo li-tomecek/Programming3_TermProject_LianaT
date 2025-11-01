@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -61,4 +62,19 @@ public class Player : Participant
         _discardPile.Add(card);
     }
 
+    public IEnumerator RotateDisksToSelected()
+    {
+        float rotationTime = 0f;
+
+        foreach (Disk disk in Disks)
+        {
+            if (disk.IsRotationLocked())
+                break;
+            
+            rotationTime = Mathf.Max(rotationTime, disk.TimeToRotate);
+            disk.RotateToFront(disk.GetActiveSpell());
+        }
+
+        yield return new WaitForSeconds(rotationTime);
+    }
 }
