@@ -5,19 +5,20 @@ public class ResolutionPhase : IState
 {
     public void Enter()
     {
-        //Apply any "OnStart" cards
+        //1. Apply any "OnStart" cards
         foreach (Disk playerDisk in Player.Instance.GetDisks())
         {
             if (playerDisk.GetActiveCard()?.Type == CardType.OnStart)
                 playerDisk.PlayCard();
         }
 
+        //2. Rotate Disks
         RoutineSequencer.Instance.AddSimultaneous(
             Opponent.Instance.ChooseRotations(),
             Player.Instance.RotateDisksToSelected());
     
-        
-        RoutineSequencer.Instance.AddRoutine(DuelManager.Instance.RotateDisksAndCheckDuels());
+        //3. Resolve each duel separately
+        RoutineSequencer.Instance.AddRoutine(DuelManager.Instance.ResolveBothDuels());
     }
     
     public void Update()

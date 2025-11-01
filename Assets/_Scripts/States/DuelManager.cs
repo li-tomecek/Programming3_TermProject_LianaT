@@ -5,52 +5,30 @@ using UnityEngine;
 public class DuelManager : Singleton<DuelManager>
 {
 
-    List<Coroutine> _routines = new List<Coroutine>();
-
-    public void ResolveTurn()
-    {
-        StartCoroutine(RotateDisksAndCheckDuels());
-    }
+    //List<Coroutine> _routines = new List<Coroutine>();
 
     // ---------------------
     //      Coroutines
     // ---------------------
-
-    public IEnumerator RotateDisks()
+    public IEnumerator ResolveBothDuels()
     {
-        _routines.Add(StartCoroutine(Opponent.Instance.ChooseRotations()));
-        _routines.Add(StartCoroutine(Player.Instance.RotateDisksToSelected()));
-
-        for (int i = 0; i < _routines.Count; i++)
-        {
-            yield return _routines[i];
-        }
-        _routines.Clear();
-    }
-
-    public IEnumerator RotateDisksAndCheckDuels()
-    {
-        //Rotate opponent's disks
-        //yield return RotateDisks();   //wait for opponents disks to rotate
-
-        _routines.Add(StartCoroutine(ResolveDuel(0)));
-        _routines.Add(StartCoroutine(ResolveDuel(1)));
-
-        for (int i = 0; i < _routines.Count; i++)
-        {
-            yield return _routines[i];
-        }
-        _routines.Clear();
-
+        yield return StartCoroutine(ResolveDuel(0));
+        yield return StartCoroutine(ResolveDuel(1));
+        
         StateManager.Instance.ChangeState(StateManager.Instance.PreparationPhase);
+        // foreach (var routine in _routines)
+        //     yield return routine;
+
+        // _routines.Clear();
     }
 
-    IEnumerator ResolveDuel(int diskIndex)
+    public IEnumerator ResolveDuel(int diskIndex)
     {
         Disk winner, loser = null;
         bool duelTied = false;
 
-        //Compare disks
+        //1. Compare disks
+        //-------------------------------
         winner = GetWinner(Player.Instance.GetDisks()[diskIndex], Opponent.Instance.GetDisks()[diskIndex]);
 
         if (winner == null)
@@ -58,18 +36,23 @@ public class DuelManager : Singleton<DuelManager>
         else
             loser = (winner == Player.Instance.GetDisks()[diskIndex]) ? Opponent.Instance.GetDisks()[diskIndex] : Player.Instance.GetDisks()[diskIndex];
 
-        //Play any animation here!
+
+        //2. Play animation here!
+        //-------------------------------
         yield return new WaitForSeconds(0.5f);      //temp
 
-        //Apply 'OnWin' cards
-        if (!duelTied && winner.GetActiveCard()?.Type == CardType.OnWin)
+        
+        //3. Apply cards
+        //-------------------------------
+        if (!duelTied && winner.GetActiveCard()?.Type == CardType.OnWin)    //a. Apply 'OnWin' cards
             winner.PlayCard();
 
-        //Apply 'OnLoss' cards
-        if (!duelTied && loser.GetActiveCard()?.Type == CardType.OnLoss)
+        if (!duelTied && loser.GetActiveCard()?.Type == CardType.OnLoss)    //b. Apply 'OnLoss' cards
             loser.PlayCard();
 
-        //Deal damage & reset effects
+
+        //4. Deal damage & reset effects
+        //-------------------------------
         if (!duelTied)
         {
             loser.GetParticipant().TakeDamage((int)(winner.GetParticipant().GetDamage() * winner.GetDamageMultiplier()));
