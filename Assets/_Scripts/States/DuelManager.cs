@@ -28,10 +28,10 @@ public class DuelManager : Singleton<DuelManager>
         _routines.Clear();
     }
 
-    IEnumerator RotateDisksAndCheckDuels()
+    public IEnumerator RotateDisksAndCheckDuels()
     {
         //Rotate opponent's disks
-        yield return RotateDisks();   //wait for opponents disks to rotate
+        //yield return RotateDisks();   //wait for opponents disks to rotate
 
         _routines.Add(StartCoroutine(ResolveDuel(0)));
         _routines.Add(StartCoroutine(ResolveDuel(1)));

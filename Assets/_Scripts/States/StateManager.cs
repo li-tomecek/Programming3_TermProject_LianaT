@@ -13,11 +13,20 @@ public class StateManager : Singleton<StateManager>
     public PreparationPhase PreparationPhase => _prepPhase;
     public ResolutionPhase ResolutionPhase => _resolutionPhase;
 
+
     void Start()
     {
         StartCoroutine(Setup());    //need to add a delay to make sure everyone's start functions have happened
     }
 
+    private IEnumerator Setup()
+    {
+        yield return new WaitForSeconds(0.2f);
+        ChangeState(_prepPhase);
+    }
+
+    // ----------------------------------------------------
+    
     void Update()
     {
         _currentState?.Update();
@@ -28,11 +37,5 @@ public class StateManager : Singleton<StateManager>
         _currentState?.Exit();
         _currentState = state;
         _currentState.Enter();
-    }
-
-    private IEnumerator Setup()
-    {
-        yield return new WaitForSeconds(0.5f);
-        ChangeState(_prepPhase);
     }
 }

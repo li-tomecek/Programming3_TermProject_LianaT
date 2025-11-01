@@ -1,3 +1,6 @@
+using System.Collections;
+using System.Collections.Generic;
+
 public class ResolutionPhase : IState
 {
     public void Enter()
@@ -9,7 +12,12 @@ public class ResolutionPhase : IState
                 playerDisk.PlayCard();
         }
 
-        DuelManager.Instance.ResolveTurn();
+        RoutineSequencer.Instance.AddSimultaneous(
+            Opponent.Instance.ChooseRotations(),
+            Player.Instance.RotateDisksToSelected());
+    
+        
+        RoutineSequencer.Instance.AddRoutine(DuelManager.Instance.RotateDisksAndCheckDuels());
     }
     
     public void Update()
