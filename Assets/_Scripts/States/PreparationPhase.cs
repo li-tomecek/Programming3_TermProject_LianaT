@@ -17,7 +17,7 @@ public class PreparationPhase : IState
         //2. Set player disks as interactable
         foreach (Disk playerDisk in Player.Instance.GetDisks())
         {
-            playerDisk.SetInteractable(true);
+            playerDisk.SetTargetable(true);
             playerDisk.GetActiveSpell().SetInteractable(false);
         }
     }
@@ -29,7 +29,8 @@ public class PreparationPhase : IState
         if (_readyToStartTurn)
             return;
 
-        if (Player.Instance.GetDisks()[0].GetActiveSpell().IsInteractable() && Player.Instance.GetDisks()[1].GetActiveSpell().IsInteractable())
+        if (Player.Instance.GetDisks()[0].GetActiveSpell().IsInteractable() &&
+            Player.Instance.GetDisks()[1].GetActiveSpell().IsInteractable())
         {
             _readyToStartTurn = true;
             InterfaceManager.Instance.ReadyButton.gameObject.SetActive(true);
@@ -43,7 +44,7 @@ public class PreparationPhase : IState
         //Set all disks as non-interactable
         foreach (Disk playerDisk in Player.Instance.GetDisks())
         {
-            playerDisk.SetInteractable(false);
+            playerDisk.SetTargetable(false);
             playerDisk.ResetSpellInteractability();
         }
     }

@@ -1,6 +1,5 @@
 using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 public class SpellComponent : MonoBehaviour, IClickable
 {
@@ -30,7 +29,14 @@ public class SpellComponent : MonoBehaviour, IClickable
     public void OnClick()
     {
         if (_isInteractable)
-            gameObject.GetComponentInParent<Disk>()?.RotateToFront(this);
+        {
+            SpellComponent activeSpell = gameObject.GetComponentInParent<Disk>()?.GetActiveSpell();
+            if (activeSpell != null && activeSpell.IsInteractable())
+                activeSpell.SetSprite(SpriteVariant.Default);
+
+            gameObject.GetComponentInParent<Disk>()?.SetActiveSpell(this);
+            SetSprite(SpriteVariant.Selected);
+        }
     }
 
     public void RotateLeft()
@@ -77,16 +83,14 @@ public class SpellComponent : MonoBehaviour, IClickable
 
         if (interactable)
         {
-            if (_defaultSprite)
-                _spriteRenderer.sprite = _defaultSprite;
+            SetSprite(SpriteVariant.Default);
 
             _spriteColor.a = 1f;
             _spriteRenderer.color = _spriteColor;
         }
         else
         {
-            if (_disabledSprite)
-                _spriteRenderer.sprite = _disabledSprite;
+            SetSprite(SpriteVariant.Disabled);
 
             _spriteColor.a = _disabledAlpha;
             _spriteRenderer.color = _spriteColor;
@@ -94,9 +98,29 @@ public class SpellComponent : MonoBehaviour, IClickable
         }
     }
 
-    public void SetSelectedSprite()
+    public void SetSprite(SpriteVariant variant)
     {
-        if (_selectedSprite)
-            _spriteRenderer.sprite = _selectedSprite;
+        switch (variant)
+        {
+            case SpriteVariant.Default:
+                if (_defaultSprite)
+                    _spriteRenderer.sprite = _defaultSprite;
+                break;
+
+            case SpriteVariant.Selected:
+                if (_selectedSprite)
+                    _spriteRenderer.sprite = _selectedSprite;
+                break;
+
+            case SpriteVariant.Disabled:
+                if (_disabledSprite)
+                    _spriteRenderer.sprite = _disabledSprite;
+                break;                
+        }
     }
+}
+
+public enum SpriteVariant
+{
+    Default, Selected, Disabled
 }

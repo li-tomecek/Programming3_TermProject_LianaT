@@ -40,9 +40,9 @@ public class Opponent : Participant
 
             } while (chosenSpell == disk.GetActiveSpell());
 
-            disk.SetInteractable(true);
+            disk.SetTargetable(true);
             disk.RotateToFront(chosenSpell);
-            disk.SetInteractable(false);
+            disk.SetTargetable(false);
 
         }
 

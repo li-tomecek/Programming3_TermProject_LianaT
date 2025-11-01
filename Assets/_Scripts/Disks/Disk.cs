@@ -11,7 +11,7 @@ public class Disk : DropTarget
     private Card _activeCard;
 
     private SpellComponent[] _spellList;
-    private SpellComponent _activeSpell;        //the spell in the 'FRONT' position
+    private SpellComponent _activeSpell;        //the spell in that has been chosen to rotate to the front
 
     private Participant _parentParticipant;
     public bool IsPlayer { get; private set; }
@@ -33,7 +33,7 @@ public class Disk : DropTarget
     #region
     public void RotateToFront(SpellComponent toFront)
     {
-        if (!_isInteractable)
+        if (_isRotationLocked)  //don't actually need this here but keep it as a safeguard
             return;
 
         if (toFront.SpellPosition == SpellPosition.Left)
@@ -66,9 +66,7 @@ public class Disk : DropTarget
         {
             if (spell.SpellType == type)
             {
-                _isInteractable = true;
                 RotateToFront(spell);
-                _isInteractable = false;
                 return;
             }
         }
@@ -83,9 +81,7 @@ public class Disk : DropTarget
         {
             if (spell.SpellPosition == positionToFront)
             {
-                _isInteractable = true;
                 RotateToFront(spell);
-                _isInteractable = false;
                 return;
             }
         }
@@ -116,7 +112,7 @@ public class Disk : DropTarget
 
     public override void OnDrop(IDroppable droppedObject)
     {
-        if (droppedObject is Card && _isInteractable)
+        if (droppedObject is Card && _isTargetable)
             _activeCard = (Card)droppedObject;
     }
     #endregion
@@ -134,9 +130,7 @@ public class Disk : DropTarget
     {
         _damageMultiplier = 1f;
         _isRotationLocked = false;
-        //Debug.Log($"{name} locked: {_isRotationLocked}");
     }
-
 
     //-----------------------------
     //      Getters/Setters         
@@ -144,18 +138,9 @@ public class Disk : DropTarget
     #region 
     public void ApplyCard(Card card) { _activeCard = card; }
     public Card GetActiveCard() { return _activeCard; }
+    
     public SpellComponent GetActiveSpell() { return _activeSpell; }
-    public Participant GetParticipant()
-    {
-        return _parentParticipant;
-        //return gameObject.GetComponentInParent<Participant>();
-    }
-    public float GetDamageMultiplier() { return _damageMultiplier; }
-    public void ApplyDamageMultiplier(float mult)
-    {
-        _damageMultiplier *= mult;  //We multiply and not directly set, as multiple multipliers may be added via different sounrces during one turn
-    }
-    public Disk GetOpposingDisk() { return _targetDisk; }
+    public void SetActiveSpell(SpellComponent spell) { _activeSpell = spell; }
     public SpellComponent FindSpellAtFront()
     {
         foreach (SpellComponent spell in _spellList)
@@ -173,6 +158,20 @@ public class Disk : DropTarget
             spell.SetInteractable(true);
         }
     }
+
+    public Participant GetParticipant()
+    {
+        return _parentParticipant;
+        //return gameObject.GetComponentInParent<Participant>();
+    }
+    public Disk GetOpposingDisk() { return _targetDisk; }
+
+    public float GetDamageMultiplier() { return _damageMultiplier; }
+    public void ApplyDamageMultiplier(float mult)
+    {
+        _damageMultiplier *= mult;  //We multiply and not directly set, as multiple multipliers may be added via different sounrces during one turn
+    }
+
     public void LockRotation() { _isRotationLocked = true; }
     public bool IsRotationLocked() { return _isRotationLocked; }
     #endregion

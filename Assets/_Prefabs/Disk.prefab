@@ -238,8 +238,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.32, y: 0.32, z: 0.2}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1.4884611, y: 1.4348748, z: 0.2}
+  m_Center: {x: -0.010907233, y: -0.007332206, z: 0}
 --- !u!1 &3329756336297477676
 GameObject:
   m_ObjectHideFlags: 0
@@ -369,8 +369,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.32000002, y: 0.32, z: 0.20000005}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1.4808543, y: 1.4591342, z: 0.20000005}
+  m_Center: {x: 0.0018350184, y: 0.0039693713, z: 0.000000998404}
 --- !u!1 &3419911173462647220
 GameObject:
   m_ObjectHideFlags: 0
@@ -417,7 +417,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5c757ed03e4e6446bef3f912bc2cc2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _isInteractable: 0
+  _isTargetable: 0
   _targetDisk: {fileID: 0}
   TimeToRotate: 0.6
 --- !u!1 &4101510953101112205
@@ -549,8 +549,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.32000002, y: 0.32, z: 0.20000003}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1.483013, y: 1.4693031, z: 0.20000003}
+  m_Center: {x: 0.01231575, y: 0.0030902624, z: 0.0000013036499}
 --- !u!1 &5505355739990067526
 GameObject:
   m_ObjectHideFlags: 0
