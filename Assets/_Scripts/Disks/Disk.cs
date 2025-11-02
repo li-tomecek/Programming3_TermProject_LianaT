@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using DG.Tweening;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
@@ -125,11 +126,21 @@ public class Disk : DropTarget
         _activeCard?.Play(this);
         _activeCard = null;
     }
-    
+
     public void ResetState()
     {
         _damageMultiplier = 1f;
         _isRotationLocked = false;
+    }
+    
+    public IEnumerator EnlargeSpellOnWin()
+    {
+        Sequence sequence = DOTween.Sequence();
+        sequence.Append(_activeSpell.transform.DOScale(0.5f, 0.3f).SetRelative(true));      //TODO: Fix magic numbers
+        sequence.AppendInterval(0.5f);
+        sequence.Append(_activeSpell.transform.DOScale(-0.5f, 0.3f).SetRelative(true));
+
+        yield return sequence.WaitForCompletion();
     }
 
     //-----------------------------

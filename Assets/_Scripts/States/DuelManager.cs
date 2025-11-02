@@ -39,7 +39,8 @@ public class DuelManager : Singleton<DuelManager>
 
         //2. Play animation here!
         //-------------------------------
-        yield return new WaitForSeconds(0.5f);      //temp
+        if(!duelTied)
+            yield return StartCoroutine(winner.EnlargeSpellOnWin());      //temp
 
         
         //3. Apply cards
