@@ -583,8 +583,8 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 236848065}
-  - {fileID: 2102576557}
   - {fileID: 1663993116}
+  - {fileID: 2102576557}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -604,7 +604,6 @@ GameObject:
   - component: {fileID: 1408564172}
   - component: {fileID: 1408564171}
   - component: {fileID: 1408564170}
-  - component: {fileID: 1408564169}
   m_Layer: 5
   m_Name: Exit_Button
   m_TagString: Untagged
@@ -632,23 +631,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 320, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1408564169
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1408564167}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4c43ecbf617fbb04ba57e274d04ea2b0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _button: {fileID: 0}
-  _default: {fileID: 21300000, guid: e0db42facd4f84945b19b120eaa38655, type: 3}
-  _onHover: {fileID: 21300000, guid: ac7976ba36f168741a4e914ba6bc01d5, type: 3}
-  _onClick: {fileID: 21300000, guid: 29c35cb29d3312b42a9bf21155c6bbac, type: 3}
-  _onDisable: {fileID: 21300000, guid: 4ee9d008dd484814698404bc5797e278, type: 3}
 --- !u!114 &1408564170
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -743,7 +725,6 @@ GameObject:
   - component: {fileID: 1412948833}
   - component: {fileID: 1412948832}
   - component: {fileID: 1412948831}
-  - component: {fileID: 1412948834}
   m_Layer: 5
   m_Name: Start_Button
   m_TagString: Untagged
@@ -853,23 +834,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1412948829}
   m_CullTransparentMesh: 1
---- !u!114 &1412948834
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1412948829}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4c43ecbf617fbb04ba57e274d04ea2b0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _button: {fileID: 0}
-  _default: {fileID: 21300000, guid: 8b034e21ab8d5be4abe5fb9761dfe284, type: 3}
-  _onHover: {fileID: 21300000, guid: 536d38d7f1d7c324d9eb4bba19ec088a, type: 3}
-  _onClick: {fileID: 21300000, guid: 1ec334fbaa0d92b4f98a6daa7fdcdef1, type: 3}
-  _onDisable: {fileID: 21300000, guid: d4e5d31d47ec656499acae50ba6c32a4, type: 3}
 --- !u!1 &1474722626
 GameObject:
   m_ObjectHideFlags: 0
