@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -17,6 +18,7 @@ public abstract class Participant : MonoBehaviour
     {
         Health = MaxHealth;
     }
+    
     // --------------------------------------------------
     public void TakeDamage(int damageDealt)
     {
@@ -30,6 +32,23 @@ public abstract class Participant : MonoBehaviour
     public void HealDamage(int damageHealed)
     {
         TakeDamage(-damageHealed);
+    }
+
+    // --------------------------------------------------
+    public IEnumerator RotateDisksToSelected()
+    {
+        float rotationTime = 0f;
+
+        foreach (Disk disk in Disks)
+        {
+            if (disk.IsRotationLocked())
+                break;
+            
+            rotationTime = Mathf.Max(rotationTime, disk.TimeToRotate);
+            disk.RotateToFront(disk.GetActiveSpell());
+        }
+
+        yield return new WaitForSeconds(rotationTime);
     }
 
     // --------------------------------------------------

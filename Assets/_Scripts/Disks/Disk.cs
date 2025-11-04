@@ -1,5 +1,7 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using DG.Tweening;
 using UnityEngine;
 
@@ -168,6 +170,7 @@ public class Disk : DropTarget
 
         throw new Exception("There are no spells set to the front position!");
     }
+    public SpellComponent[] GetSpellList() { return _spellList; }
     public void ResetSpellInteractability()
     {
         foreach (SpellComponent spell in _spellList)
