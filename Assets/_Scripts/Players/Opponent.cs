@@ -40,18 +40,18 @@ public class Opponent : Participant
 
     public void UpdateStrategy()
     {
-        float healthValue = (float)Health / MaxHealth;
+        float healthValue = Health / (float)MaxHealth;
 
-        if (healthValue >= _aggressiveHealthThreshold && !(_currentStrategy is AggressiveStrategy))
-            _currentStrategy = new AggressiveStrategy();
+        if (healthValue >= _aggressiveHealthThreshold)
+            _currentStrategy = (_currentStrategy is AggressiveStrategy) ? _currentStrategy :  new AggressiveStrategy();
 
-        else if (healthValue <= _defensiveHealthThreshold && !(_currentStrategy is DefensiveStrategy))
-            _currentStrategy = new DefensiveStrategy();
+        else if (healthValue <= _defensiveHealthThreshold)
+            _currentStrategy = (_currentStrategy is DefensiveStrategy) ? _currentStrategy :  new DefensiveStrategy();
 
         else if (!(_currentStrategy is RandomStrategy))
-            _currentStrategy = new RandomStrategy();
+            _currentStrategy =   new RandomStrategy();
 
-        Debug.Log($"Chose the {_currentStrategy} at {healthValue * 100f} % health.");
+        Debug.Log($"Chose the {_currentStrategy} at {healthValue * 100f}% health.");
     }
 
 

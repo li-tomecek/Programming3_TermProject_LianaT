@@ -8,7 +8,8 @@ public class RoutineSequencer : Singleton<RoutineSequencer>
     private Queue<IEnumerator> _routineQueue = new Queue<IEnumerator>();
     public Queue<IEnumerator> RoutineQueue => _routineQueue;
 
-    private bool _routineActive; 
+    private bool _routineActive;
+    public Coroutine ActiveRoutine;
     
     //-------------------
     //  Play the queue
@@ -17,7 +18,7 @@ public class RoutineSequencer : Singleton<RoutineSequencer>
     {
         if (!_routineActive && _routineQueue.Count > 0)
         {
-            StartCoroutine(PlayNext());
+            ActiveRoutine = StartCoroutine(PlayNext());
         }
             
     }
@@ -26,6 +27,7 @@ public class RoutineSequencer : Singleton<RoutineSequencer>
     {
         _routineActive = true;
         yield return StartCoroutine(_routineQueue.Dequeue());
+        ActiveRoutine = null;
         _routineActive = false;
     }
     
