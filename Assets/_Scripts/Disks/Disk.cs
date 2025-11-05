@@ -1,22 +1,31 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using DG.Tweening;
 using UnityEngine;
 
 public class Disk : DropTarget
 {
-    [SerializeField] private Disk _targetDisk;
+    [SerializeField] Disk _opposingDisk;
+    
+    [Header("Disk Rotation")]
     public float TimeToRotate = 0.6f;
+    [Header("Spell Enlarge on Win")]
+    [SerializeField] float _spellExpansionFactor = 0.5f;
+    [SerializeField] float _timeToExpand = 0.3f;
+    [SerializeField] float _timeExpanded = 0.5f;
 
     private Card _activeCard;
 
     private SpellComponent[] _spellList;
     private SpellComponent _activeSpell;        //the spell in that has been chosen to rotate to the front
 
-    private Participant _parentParticipant;
-    public bool IsPlayer { get; private set; }
     private float _damageMultiplier = 1f;
     private bool _isRotationLocked;
+
+    private Participant _parentParticipant;
+    public bool IsPlayer { get; private set; }
 
     void Awake()
     {
@@ -135,9 +144,9 @@ public class Disk : DropTarget
     public IEnumerator EnlargeSpellOnWin()
     {
         Sequence sequence = DOTween.Sequence();
-        sequence.Append(_activeSpell.transform.DOScale(0.5f, 0.3f).SetRelative(true));      //TODO: Fix magic numbers
-        sequence.AppendInterval(0.5f);
-        sequence.Append(_activeSpell.transform.DOScale(-0.5f, 0.3f).SetRelative(true));
+        sequence.Append(_activeSpell.transform.DOScale(_spellExpansionFactor, _timeToExpand).SetRelative(true));      //TODO: Fix magic numbers
+        sequence.AppendInterval(_timeExpanded);
+        sequence.Append(_activeSpell.transform.DOScale(-_spellExpansionFactor, _timeToExpand).SetRelative(true));
 
         yield return sequence.WaitForCompletion();
     }
@@ -161,6 +170,7 @@ public class Disk : DropTarget
 
         throw new Exception("There are no spells set to the front position!");
     }
+    public SpellComponent[] GetSpellList() { return _spellList; }
     public void ResetSpellInteractability()
     {
         foreach (SpellComponent spell in _spellList)
@@ -174,7 +184,7 @@ public class Disk : DropTarget
         return _parentParticipant;
         //return gameObject.GetComponentInParent<Participant>();
     }
-    public Disk GetOpposingDisk() { return _targetDisk; }
+    public Disk GetOpposingDisk() { return _opposingDisk; }
 
     public float GetDamageMultiplier() { return _damageMultiplier; }
     public void ApplyDamageMultiplier(float mult)

@@ -12,12 +12,15 @@ public class ResolutionPhase : IState
                 playerDisk.PlayCard();
         }
 
-        //2. Rotate Disks
+        //2. Opponent Chooses spells - must come before disk rotation
+        Opponent.Instance.ChooseSpells();
+
+        //3. Rotate Disks
         RoutineSequencer.Instance.AddSimultaneous(
-            Opponent.Instance.ChooseRotations(),
+            Opponent.Instance.RotateDisksToSelected(),
             Player.Instance.RotateDisksToSelected());
     
-        //3. Resolve each duel separately
+        //4. Resolve each duel separately
         RoutineSequencer.Instance.AddRoutine(DuelManager.Instance.ResolveBothDuels());
     }
     

@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Linq;
 using UnityEngine;
 
 public class StateManager : Singleton<StateManager>
@@ -21,7 +22,21 @@ public class StateManager : Singleton<StateManager>
 
     private IEnumerator Setup()
     {
-        yield return new WaitForSeconds(0.2f);
+        PreparationPhase.Exit();    //set buttons and disks to inactive temporarily
+
+        //Rotate each disk randomly to start
+        int index;
+        foreach (Disk disk in Player.Instance.GetDisks().Concat(Opponent.Instance.GetDisks()))
+        {
+            index = Random.Range(0, disk.GetSpellList().Length);
+            disk.SetActiveSpell(disk.GetSpellList()[index]);            //choose a random spell to rotate to
+        }
+
+        RoutineSequencer.Instance.AddSimultaneous(
+            Opponent.Instance.RotateDisksToSelected(),
+            Player.Instance.RotateDisksToSelected());
+        
+        yield return RoutineSequencer.Instance.ActiveRoutine;
         ChangeState(_prepPhase);
     }
 

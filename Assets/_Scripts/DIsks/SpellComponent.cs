@@ -26,6 +26,8 @@ public class SpellComponent : MonoBehaviour, IClickable
         _spriteRenderer.color = _spriteColor;
     }
 
+    #region Rotation & Interaction
+
     public void OnClick()
     {
         if (_isInteractable)
@@ -74,9 +76,11 @@ public class SpellComponent : MonoBehaviour, IClickable
                 break;
         }
     }
+    #endregion
+
+    #region Getters / Setters
 
     public bool IsInteractable() { return _isInteractable; }
-
     public void SetInteractable(bool interactable)
     {
         _isInteractable = interactable;
@@ -115,9 +119,43 @@ public class SpellComponent : MonoBehaviour, IClickable
             case SpriteVariant.Disabled:
                 if (_disabledSprite)
                     _spriteRenderer.sprite = _disabledSprite;
-                break;                
+                break;
         }
     }
+
+    #endregion
+
+    #region Static functions: Spell Matchups
+    public static SpellType GetWinningType(SpellType type)
+    {
+        switch (type)
+        {
+            case (SpellType.Holy):
+                return SpellType.Arcane;
+            case (SpellType.Arcane):
+                return SpellType.Dark;
+            case (SpellType.Dark):
+                return SpellType.Holy;
+            default:
+                return SpellType.Arcane;      //this should never be reached
+        }
+    }
+
+    public static SpellType GetLosingType(SpellType type)
+    {
+        switch (type)
+        {
+            case (SpellType.Holy):
+                return SpellType.Dark;
+            case (SpellType.Arcane):
+                return SpellType.Holy;
+            case (SpellType.Dark):
+                return SpellType.Arcane;
+            default:
+                return SpellType.Dark;      //this should never be reached
+        }
+    }
+    #endregion
 }
 
 public enum SpriteVariant

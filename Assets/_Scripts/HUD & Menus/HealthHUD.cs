@@ -35,7 +35,5 @@ public class HealthHUD : MonoBehaviour
             _slider.value += valuePerSecond * Time.deltaTime;
             difference = (endValue - _slider.value);
         }
-
-        Debug.Log(_slider.value);
     }
 }
