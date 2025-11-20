@@ -123,6 +123,8 @@ public class Disk : DropTarget
     {
         if (droppedObject is Card && _isTargetable)
             _activeCard = (Card)droppedObject;
+        
+        Debug.Log("Is being dropped on");
     }
     #endregion
     
