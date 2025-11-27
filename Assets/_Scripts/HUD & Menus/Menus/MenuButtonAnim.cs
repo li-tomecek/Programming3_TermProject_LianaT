@@ -25,12 +25,12 @@ public class MenuButtonAnim : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     
     public void OnPointerEnter(PointerEventData eventData)
     {
-        _button.transform.DOScale(_defaultScale * _scaleAmount, _scaleTime);
+        _button.transform.DOScale(_defaultScale * _scaleAmount, _scaleTime).SetUpdate(true);        //SetUpdate(true) should allow the animations to happen even if the timescale is set to 0
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        _button.transform.DOScale(_defaultScale, _scaleTime);
+        _button.transform.DOScale(_defaultScale, _scaleTime).SetUpdate(true);
     }
     
 
