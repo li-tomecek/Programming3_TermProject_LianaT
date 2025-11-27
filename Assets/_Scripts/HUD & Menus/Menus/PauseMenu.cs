@@ -18,14 +18,14 @@ public class PauseMenu : Singleton<PauseMenu>
             _mainMenuConfirmationPopup.SetActive(true);
         });
 
-        _resumeButton.onClick.AddListener(UnpauseGame);
+        _resumeButton.onClick.AddListener(() => GameStateManager.Instance.ChangeState(GameStateManager.Instance.DefaultState));
     }
 
 
 
     public void OpenDeckView()
     {
-        //Open deck view menu here
+        GameStateManager.Instance.ChangeState(GameStateManager.Instance.DeckViewState);
     }
 
     public void PauseGame()
@@ -41,14 +41,6 @@ public class PauseMenu : Singleton<PauseMenu>
         Time.timeScale = 1;
         _pauseMenuObject.SetActive(false);
 
-    }
-
-    public void TogglePause()
-    {
-        if (_isPaused)
-            UnpauseGame();
-        else
-            PauseGame();
     }
 
 }
