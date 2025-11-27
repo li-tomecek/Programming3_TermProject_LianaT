@@ -4,12 +4,15 @@ using UnityEngine.UI;
 public class PauseMenu : Singleton<PauseMenu>
 {
     [SerializeField] Button _resumeButton, _viewDeckButton, _mainMenuButton;
-    [SerializeField] GameObject _mainMenuConfirmationPopup;
+    [SerializeField] GameObject _pauseMenuObject, _mainMenuConfirmationPopup;
 
     private bool _isPaused;
 
     void Start()
     {
+        _pauseMenuObject.SetActive(false);              //just in case they aren't already deactivated
+        _mainMenuConfirmationPopup.SetActive(false);
+
         _mainMenuButton.onClick.AddListener(() =>
         {
             _mainMenuConfirmationPopup.SetActive(true);
@@ -29,6 +32,7 @@ public class PauseMenu : Singleton<PauseMenu>
     {
         _isPaused = true;
         Time.timeScale = 0;
+        _pauseMenuObject.SetActive(true);
 
     }
 
@@ -36,6 +40,8 @@ public class PauseMenu : Singleton<PauseMenu>
     {
         _isPaused = false;
         Time.timeScale = 1;
+        _pauseMenuObject.SetActive(false);
+
     }
 
 }

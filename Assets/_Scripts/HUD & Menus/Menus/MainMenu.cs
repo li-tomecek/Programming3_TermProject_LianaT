@@ -11,8 +11,7 @@ public class MainMenu : MonoBehaviour
     {
         _startButton.onClick.AddListener(() =>
         {
-            //LevelManager.Instance.LoadGameScene();
-            SceneManager.LoadScene("BattleScene");
+            LevelManager.Instance.LoadGameScene();
         });
 
         _quitButton.onClick.AddListener(() =>

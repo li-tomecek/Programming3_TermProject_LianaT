@@ -967,6 +967,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 592252130}
+  - component: {fileID: 592252131}
   m_Layer: 0
   m_Name: PauseMenuCanvases
   m_TagString: Untagged
@@ -991,6 +992,23 @@ Transform:
   - {fileID: 292567039}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &592252131
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 592252129}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed9ffd919c65db44997b3e6ba9f7f013, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _resumeButton: {fileID: 1412948831}
+  _viewDeckButton: {fileID: 270136837}
+  _mainMenuButton: {fileID: 1408564170}
+  _pauseMenuObject: {fileID: 1352485231}
+  _mainMenuConfirmationPopup: {fileID: 292567038}
 --- !u!1 &816181691
 GameObject:
   m_ObjectHideFlags: 0
@@ -1425,7 +1443,6 @@ GameObject:
   - component: {fileID: 1352485234}
   - component: {fileID: 1352485233}
   - component: {fileID: 1352485232}
-  - component: {fileID: 1352485236}
   m_Layer: 5
   m_Name: 'Pause Menu [Canvas]'
   m_TagString: Untagged
@@ -1517,22 +1534,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &1352485236
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1352485231}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed9ffd919c65db44997b3e6ba9f7f013, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _resumeButton: {fileID: 0}
-  _viewDeckButton: {fileID: 0}
-  _mainMenuButton: {fileID: 0}
-  _mainMenuConfirmationPopup: {fileID: 292567038}
 --- !u!1 &1408564167
 GameObject:
   m_ObjectHideFlags: 0

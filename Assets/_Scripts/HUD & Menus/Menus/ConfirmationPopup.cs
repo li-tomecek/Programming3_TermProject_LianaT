@@ -18,7 +18,6 @@ public class ConfirmationPopup : MonoBehaviour
 
     public void ReturnToMainMenu() 
     {
-        //LevelManager.Instance.LoadMainMenu();
-        SceneManager.LoadScene("MainMenuScene"); 
+        LevelManager.Instance.LoadMainMenu();
     }
 }
