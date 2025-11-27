@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 public class InputManager : Singleton<InputManager>
@@ -9,6 +10,7 @@ public class InputManager : Singleton<InputManager>
 
     //Mouse-Click Actions
     public InputAction ClickAction { get; private set; }
+    public UnityEvent OnPauseHit;
 
     void OnEnable()
     {
@@ -18,6 +20,9 @@ public class InputManager : Singleton<InputManager>
 
         ClickAction = _actions.Gameplay.Click;
         ClickAction.performed += OnClickPerformed;
+
+        OnPauseHit = new UnityEvent();
+        _actions.Gameplay.Pause.performed += OnPausePerformed;
     }
 
     void OnDisable()
@@ -31,5 +36,10 @@ public class InputManager : Singleton<InputManager>
 
         if (Physics.Raycast(ray, out RaycastHit hit))
             hit.collider.gameObject.GetComponent<IClickable>()?.OnClick();
+    }
+
+    private void OnPausePerformed(InputAction.CallbackContext context)
+    {
+        OnPauseHit?.Invoke();
     }
 }

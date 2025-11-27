@@ -33,7 +33,6 @@ public class PauseMenu : Singleton<PauseMenu>
         _isPaused = true;
         Time.timeScale = 0;
         _pauseMenuObject.SetActive(true);
-
     }
 
     public void UnpauseGame()
@@ -42,6 +41,14 @@ public class PauseMenu : Singleton<PauseMenu>
         Time.timeScale = 1;
         _pauseMenuObject.SetActive(false);
 
+    }
+
+    public void TogglePause()
+    {
+        if (_isPaused)
+            UnpauseGame();
+        else
+            PauseGame();
     }
 
 }

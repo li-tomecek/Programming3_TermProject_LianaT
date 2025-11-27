@@ -1771,7 +1771,7 @@ GameObject:
   - component: {fileID: 1824015427}
   - component: {fileID: 1824015429}
   m_Layer: 0
-  m_Name: '[ States ]'
+  m_Name: '[ Battle States ]'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1838,7 +1838,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1876002904}
   m_Layer: 0
-  m_Name: '[Managers]'
+  m_Name: '[Battle Managers]'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

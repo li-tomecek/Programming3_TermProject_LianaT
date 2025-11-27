@@ -15,7 +15,7 @@ public class DuelManager : Singleton<DuelManager>
         yield return StartCoroutine(ResolveDuel(0));
         yield return StartCoroutine(ResolveDuel(1));
         
-        StateManager.Instance.ChangeState(StateManager.Instance.PreparationPhase);
+        BattleStateManager.Instance.ChangeState(BattleStateManager.Instance.PreparationPhase);
         // foreach (var routine in _routines)
         //     yield return routine;
 

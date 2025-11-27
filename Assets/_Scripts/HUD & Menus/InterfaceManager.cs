@@ -21,6 +21,6 @@ public class InterfaceManager : Singleton<InterfaceManager>
     //-----------------------------
     public void ReadyButtonPressed()
     {
-        StateManager.Instance.ChangeState(StateManager.Instance.ResolutionPhase);
+        BattleStateManager.Instance.ChangeState(BattleStateManager.Instance.ResolutionPhase);
     }
 }

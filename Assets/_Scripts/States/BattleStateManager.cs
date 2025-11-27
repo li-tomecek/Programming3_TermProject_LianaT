@@ -2,7 +2,7 @@ using System.Collections;
 using System.Linq;
 using UnityEngine;
 
-public class StateManager : Singleton<StateManager>
+public class BattleStateManager : Singleton<BattleStateManager>
 {
     private IState _currentState;
 
