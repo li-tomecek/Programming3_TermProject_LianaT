@@ -165,6 +165,53 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _handInterface: {fileID: 410746715}
   _readyButton: {fileID: 797612432}
+--- !u!1 &198776495
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 198776496}
+  - component: {fileID: 198776497}
+  m_Layer: 0
+  m_Name: '[ Input ]'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &198776496
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 198776495}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1876002904}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &198776497
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 198776495}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4abce432aa863294e9e35dd0dc9cfa7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnPauseHit:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -1813,7 +1860,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1824015425}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c8d4ab21b3053d40805c2b3fc5bfa4c, type: 3}
+  m_Script: {fileID: 11500000, guid: 2972665ccc7066242bdabc7951e8d404, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &1824015429
@@ -1859,6 +1906,7 @@ Transform:
   m_Children:
   - {fileID: 151770104}
   - {fileID: 1824015426}
+  - {fileID: 198776496}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1946334414 stripped
