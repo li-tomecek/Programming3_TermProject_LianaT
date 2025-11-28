@@ -18,6 +18,7 @@ public class ConfirmationPopup : MonoBehaviour
 
     public void ReturnToMainMenu() 
     {
+        GameStateManager.Instance.ChangeState(GameStateManager.Instance.DefaultState);
         LevelManager.Instance.LoadMainMenu();
         gameObject.SetActive(false);
     }
