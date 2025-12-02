@@ -19,7 +19,6 @@ public class GameStateManager : Singleton<GameStateManager>
     private void Start()
     {
         ChangeState(_defaultState);
-        Debug.Log("herm");
 
     }
 
