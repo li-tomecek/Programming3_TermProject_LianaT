@@ -2,6 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+/**
+    This class handles the player's deck and hand.
+    As there is a deck view menu, this also acts as the 
+    'Deck Model' in the Deck MVC pattern. 
+
+    If there is time to re-oprganize, creating a deck model class that the player had reference to 
+    would be ideal.
+**/
 public class Player : Participant
 {
     private const int MAX_HAND_SIZE = 4;
@@ -60,5 +69,14 @@ public class Player : Participant
         InterfaceManager.Instance.HandInterface.RemovePhysicalCardFromHand(physCard);
         _hand.Remove(card);
         _discardPile.Add(card);
+    }
+
+    public (Dictionary<Card, int> deck, Dictionary<Card, int> discardPile) GetCardsAsDictionaries()     //Tuple to get both dictionaries at once
+    {
+        Dictionary<Card, int> deck = new Dictionary<Card, int>();
+        Dictionary<Card, int> discard = new Dictionary<Card, int>();
+
+
+        return (deck: deck, discardPile: discard);
     }
 }
