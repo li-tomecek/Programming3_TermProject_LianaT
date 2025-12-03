@@ -76,6 +76,22 @@ public class Player : Participant
         Dictionary<Card, int> deck = new Dictionary<Card, int>();
         Dictionary<Card, int> discard = new Dictionary<Card, int>();
 
+        foreach(Card card in _deck)
+        {
+            if(deck.ContainsKey(card))
+                deck[card] ++;
+            else
+                deck.Add(card, 1);
+        }
+
+        foreach(Card card in _discardPile)
+        {
+            if(discard.ContainsKey(card))
+                discard[card] ++;
+            else
+                discard.Add(card, 1);
+        }
+
 
         return (deck: deck, discardPile: discard);
     }

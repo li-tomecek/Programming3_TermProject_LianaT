@@ -17,6 +17,7 @@ public class PauseMenu : Singleton<PauseMenu>
         });
 
         _resumeButton.onClick.AddListener(() => GameStateManager.Instance.ChangeState(GameStateManager.Instance.DefaultState));
+        _viewDeckButton.onClick.AddListener(OpenDeckView);
     }
 
 
