@@ -33,17 +33,18 @@ public class DeckMenuView : MonoBehaviour
 
         int deckCount = 0;
         int discardCount = 0;
+        DeckMenuView_Card cardView;
         //Create new cards
         foreach (var card in deck.Keys)
         {
-            var cardView = Instantiate(_cardViewPrefab, _deckHolder);
+            cardView = Instantiate(_cardViewPrefab, _deckHolder);
             cardView.SetCard(card, deck[card]);
             deckCount += deck[card];
         }
 
         foreach (var card in discardPile.Keys)
         {
-            var cardView = Instantiate(_cardViewPrefab, _deckHolder);
+            cardView = Instantiate(_cardViewPrefab, _discardHolder);
             cardView.SetCard(card, discardPile[card]);
             discardCount += discardPile[card];
         }

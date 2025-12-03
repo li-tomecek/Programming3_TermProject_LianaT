@@ -59,6 +59,8 @@ public class PhysicalCard : MonoBehaviour,
 
     public void OnDrag(PointerEventData eventData)
     {
+        if (_isInteractable == false) return;
+
         gameObject.transform.position += (Vector3)eventData.delta;
         CheckCardTargeting();
         
@@ -66,6 +68,8 @@ public class PhysicalCard : MonoBehaviour,
 
     public void OnEndDrag(PointerEventData eventData)
     {
+        if (_isInteractable == false) return;
+        
         _IsHeld = false;
         if (_currentTarget != null && _currentTarget.IsInteractable())
         {
