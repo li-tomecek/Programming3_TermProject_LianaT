@@ -7,12 +7,14 @@ public class Paused_DeckViewState : IState
         InputManager.Instance.OnPauseHit.RemoveAllListeners();
         InputManager.Instance.OnPauseHit.AddListener(() => GameStateManager.Instance.ChangeState(GameStateManager.Instance.PausedState));
         
-        //Open Deck view Menu here
+        Time.timeScale = 0;
+        DeckMenuController.Instance.OpenDeckMenu();
     }
 
     public void Exit()
     {
-        //close Deck view Menu here
+        Time.timeScale = 1;
+        DeckMenuController.Instance.CloseDeckMenu();
     }
 
     public void Update()

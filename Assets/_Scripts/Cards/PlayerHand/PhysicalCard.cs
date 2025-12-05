@@ -10,6 +10,8 @@ public class PhysicalCard : MonoBehaviour,
 {
     [SerializeField] private TMP_Text _nameText;
     [SerializeField] private TMP_Text _descriptionText;
+
+    [SerializeField] private bool _isInteractable = true;
     [SerializeField] private LayerMask _dropTargetMask;
 
     private Card _associatedCard;
@@ -48,6 +50,8 @@ public class PhysicalCard : MonoBehaviour,
     // -----------------
     public void OnBeginDrag(PointerEventData eventData)
     {
+       if (_isInteractable == false) return;
+
         _IsHeld = true;
         _hoverSequence?.Pause();
         HoverEndEvent?.Invoke();
@@ -55,6 +59,8 @@ public class PhysicalCard : MonoBehaviour,
 
     public void OnDrag(PointerEventData eventData)
     {
+        if (_isInteractable == false) return;
+
         gameObject.transform.position += (Vector3)eventData.delta;
         CheckCardTargeting();
         
@@ -62,6 +68,8 @@ public class PhysicalCard : MonoBehaviour,
 
     public void OnEndDrag(PointerEventData eventData)
     {
+        if (_isInteractable == false) return;
+        
         _IsHeld = false;
         if (_currentTarget != null && _currentTarget.IsInteractable())
         {
@@ -101,7 +109,7 @@ public class PhysicalCard : MonoBehaviour,
     // -----------------
     public void OnPointerEnter(PointerEventData eventData)
     {
-        if (_IsHeld)
+        if (_IsHeld || _isInteractable == false)
             return;
 
         _hoverSequence.Restart();
@@ -110,7 +118,7 @@ public class PhysicalCard : MonoBehaviour,
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        if (_IsHeld)
+        if (_IsHeld || _isInteractable == false)
             return;
 
         gameObject.transform.DOLocalMove(_dockedLocalPosition, 0.5f);

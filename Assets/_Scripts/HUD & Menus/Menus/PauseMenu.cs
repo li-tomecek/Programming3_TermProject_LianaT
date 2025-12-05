@@ -6,8 +6,6 @@ public class PauseMenu : Singleton<PauseMenu>
     [SerializeField] Button _resumeButton, _viewDeckButton, _mainMenuButton;
     [SerializeField] GameObject _pauseMenuObject, _mainMenuConfirmationPopup;
 
-    private bool _isPaused;
-
     void Start()
     {
         _pauseMenuObject.SetActive(false);              //just in case they aren't already deactivated
@@ -19,6 +17,7 @@ public class PauseMenu : Singleton<PauseMenu>
         });
 
         _resumeButton.onClick.AddListener(() => GameStateManager.Instance.ChangeState(GameStateManager.Instance.DefaultState));
+        _viewDeckButton.onClick.AddListener(OpenDeckView);
     }
 
 
@@ -30,14 +29,18 @@ public class PauseMenu : Singleton<PauseMenu>
 
     public void PauseGame()
     {
-        _isPaused = true;
         Time.timeScale = 0;
         _pauseMenuObject.SetActive(true);
+        
+        if (DeckMenuController.Instance != null && DeckMenuController.Instance.IsValid())
+            _viewDeckButton.interactable = true;
+        else
+            _viewDeckButton.interactable = false;
+
     }
 
     public void UnpauseGame()
     {
-        _isPaused = false;
         Time.timeScale = 1;
         _pauseMenuObject.SetActive(false);
 
