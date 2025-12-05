@@ -26,7 +26,6 @@ public class Player : Participant
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
         }
         else
         {
