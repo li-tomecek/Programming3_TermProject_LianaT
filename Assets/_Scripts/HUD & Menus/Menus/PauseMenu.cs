@@ -41,6 +41,7 @@ public class PauseMenu : Singleton<PauseMenu>
 
     public void PauseGame()
     {
+        Time.timeScale = 0;
         _pauseMenuObject.SetActive(true);
 
         if (DeckMenuController.Instance != null && DeckMenuController.Instance.IsValid())
@@ -48,7 +49,6 @@ public class PauseMenu : Singleton<PauseMenu>
         else
             _viewDeckButton.interactable = false;
 
-        _menuContent.SetActive(false);
         OpenScroll();
     }
 
@@ -60,18 +60,19 @@ public class PauseMenu : Singleton<PauseMenu>
 
     private void OpenScroll()
     {  
-        _scrollRect.DOAnchorMin(_minAnchorOpen, _timeToOpen).OnComplete(() => 
-        {
-            _menuContent.SetActive(true);
-            Time.timeScale = 0;
-        });
+        _menuContent.SetActive(false);
+        _scrollRect.DOAnchorMin(_minAnchorOpen, _timeToOpen)
+            .SetUpdate(true)
+            .OnComplete(() => _menuContent.SetActive(true));
     }
 
     private void CloseScroll()
     {
         _menuContent.SetActive(false);
         Vector2 closedAnchor = new Vector2(_scrollRect.anchorMin.x, _minAnchorClosed);
-        _scrollRect.DOAnchorMin(closedAnchor, _timeToOpen).OnComplete(() => _pauseMenuObject.SetActive(false));
+        _scrollRect.DOAnchorMin(closedAnchor, _timeToOpen)
+            .SetUpdate(true)
+            .OnComplete(() => _pauseMenuObject.SetActive(false));
     }
 }
 
