@@ -1511,7 +1511,7 @@ MonoBehaviour:
   _resumeButton: {fileID: 1412948831}
   _viewDeckButton: {fileID: 270136837}
   _mainMenuButton: {fileID: 1408564170}
-  _pauseMenuObject: {fileID: 1352485231}
+  _pauseMenuObject: {fileID: 592252129}
   _mainMenuConfirmationPopup: {fileID: 292567043}
   _scrollRect: {fileID: 310043171}
   _menuContent: {fileID: 1699361804}
