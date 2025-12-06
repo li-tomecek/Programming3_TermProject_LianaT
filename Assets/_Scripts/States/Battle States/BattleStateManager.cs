@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BattleStateManager : Singleton<BattleStateManager>
 {
+    public bool GameOver = false;
     private IState _currentState;
 
     //States

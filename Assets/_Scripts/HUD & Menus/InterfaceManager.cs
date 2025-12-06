@@ -12,6 +12,7 @@ public class InterfaceManager : Singleton<InterfaceManager>
 {
     [SerializeField] HandInterface _handInterface;
     [SerializeField] Button _readyButton;
+    [SerializeField] ResultsScreen _resultsScreen;
 
     public HandInterface HandInterface => _handInterface;
     public Button ReadyButton => _readyButton;
@@ -22,5 +23,11 @@ public class InterfaceManager : Singleton<InterfaceManager>
     public void ReadyButtonPressed()
     {
         BattleStateManager.Instance.ChangeState(BattleStateManager.Instance.ResolutionPhase);
+    }
+
+    public void ShowResultsScreen(bool gameWon)
+    {
+        _resultsScreen.gameObject.SetActive(true);
+        _resultsScreen.PlayResultsSequence(gameWon);
     }
 }

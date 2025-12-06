@@ -26,7 +26,18 @@ public abstract class Participant : MonoBehaviour
         Health = Math.Clamp(Health, 0, MaxHealth);
 
         OnHealthChanged?.Invoke(Health);
-        Debug.Log($" {name} took {damageDealt} damage.\n Health: {Health}/{MaxHealth}");
+        //Debug.Log($" {name} took {damageDealt} damage.\n Health: {Health}/{MaxHealth}");
+        
+        if(Health <= 0 && BattleStateManager.Instance.GameOver == false)
+        {
+
+            BattleStateManager.Instance.GameOver = true;    //so that if it happens "at the same time" then the first player to lose is the loser
+
+            if (this is Player)
+                InterfaceManager.Instance.ShowResultsScreen(false); //player lost
+            else
+                InterfaceManager.Instance.ShowResultsScreen(true);  //player won
+        }
     }
 
     public void HealDamage(int damageHealed)
