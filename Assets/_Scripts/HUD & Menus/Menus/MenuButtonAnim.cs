@@ -10,8 +10,8 @@ public class MenuButtonAnim : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     private Vector3 _defaultScale;
     [SerializeField] float _scaleAmount = 1.25f;
     [SerializeField] float _scaleTime = 0.5f;
+    Tween tween;
 
-    
     void Start()
     {
         _button = gameObject.GetComponent<Button>();
@@ -26,14 +26,19 @@ public class MenuButtonAnim : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     public void OnPointerEnter(PointerEventData eventData)
     {
         if(_button.interactable == false) return; 
-        _button.transform.DOScale(_defaultScale * _scaleAmount, _scaleTime).SetUpdate(true);        //SetUpdate(true) should allow the animations to happen even if the timescale is set to 0
+        tween = _button.transform.DOScale(_defaultScale * _scaleAmount, _scaleTime).SetUpdate(true);        //SetUpdate(true) should allow the animations to happen even if the timescale is set to 0
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        _button.transform.DOScale(_defaultScale, _scaleTime).SetUpdate(true);
+        tween = _button.transform.DOScale(_defaultScale, _scaleTime).SetUpdate(true);
     }
-    
+
+    public void OnDisable()
+    {
+        tween.Kill();
+    }
+
 
 
 }
