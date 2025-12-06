@@ -40,8 +40,6 @@ public class PauseMenu : Singleton<PauseMenu>
 
     public void PauseGame()
     {
-        if(Time.timeScale == 0) return;     //Don't try and re-open if its already open
-        
         _pauseMenuObject.SetActive(true);
 
         if (DeckMenuController.Instance != null && DeckMenuController.Instance.IsValid())
