@@ -5,10 +5,12 @@ using UnityEngine.UI;
 public class MainMenu : MonoBehaviour
 {
     [SerializeField] Button _startButton, _quitButton;
-    [SerializeField] GameObject _quitConfirmationPopup;
+    [SerializeField] ConfirmationPopup _quitConfirmationPopup;
 
     void Start()
     {
+        _quitConfirmationPopup.gameObject.SetActive(false);
+
         _startButton.onClick.AddListener(() =>
         {
             LevelManager.Instance.LoadGameScene();
@@ -16,7 +18,7 @@ public class MainMenu : MonoBehaviour
 
         _quitButton.onClick.AddListener(() =>
         {
-            _quitConfirmationPopup.SetActive(true);
+            _quitConfirmationPopup.OpenPopup();
         });   
     } 
 }

@@ -5,9 +5,10 @@ using UnityEngine.UI;
 public class PauseMenu : Singleton<PauseMenu>
 {
     [SerializeField] Button _resumeButton, _viewDeckButton, _mainMenuButton;
-    [SerializeField] GameObject _pauseMenuObject, _mainMenuConfirmationPopup;
+    [SerializeField] GameObject _pauseMenuObject;
+    [SerializeField] ConfirmationPopup _mainMenuConfirmationPopup;
     
-    [Header("Scroll Rolling")]
+    [Header("Scroll Animation")]
     [SerializeField] RectTransform _scrollRect;
     [SerializeField] GameObject _menuContent;
     [SerializeField] float _minAnchorClosed = 0.741f;
@@ -17,8 +18,8 @@ public class PauseMenu : Singleton<PauseMenu>
     void Start()
     {
         //Deactivate game objects
-        _pauseMenuObject.SetActive(false);              //just in case they aren't already deactivated
-        _mainMenuConfirmationPopup.SetActive(false);
+        _pauseMenuObject.SetActive(false);                      //just in case they aren't already deactivated
+        _mainMenuConfirmationPopup.gameObject.SetActive(false);
 
         //Set anchors for scroll open/closing
         _minAnchorOpen = _scrollRect.anchorMin;                                         //get the anchor position in the open position
@@ -27,7 +28,7 @@ public class PauseMenu : Singleton<PauseMenu>
         //Assign button listeners
         _mainMenuButton.onClick.AddListener(() =>
         {
-            _mainMenuConfirmationPopup.SetActive(true);
+            _mainMenuConfirmationPopup.OpenPopup();
         });
         _resumeButton.onClick.AddListener(() => GameStateManager.Instance.ChangeState(GameStateManager.Instance.DefaultState));
         _viewDeckButton.onClick.AddListener(OpenDeckView);
