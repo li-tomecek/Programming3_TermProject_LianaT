@@ -1,3 +1,4 @@
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -5,22 +6,32 @@ public class PauseMenu : Singleton<PauseMenu>
 {
     [SerializeField] Button _resumeButton, _viewDeckButton, _mainMenuButton;
     [SerializeField] GameObject _pauseMenuObject, _mainMenuConfirmationPopup;
+    
+    [Header("Scroll Rolling")]
+    [SerializeField] RectTransform _scrollRect;
+    [SerializeField] GameObject _menuContent;
+    [SerializeField] float _minAnchorClosed = 0.741f;
+    [SerializeField] float _timeToOpen = 0.7f;
+    Vector2 _minAnchorOpen;
 
     void Start()
     {
+        //Deactivate game objects
         _pauseMenuObject.SetActive(false);              //just in case they aren't already deactivated
         _mainMenuConfirmationPopup.SetActive(false);
 
+        //Set anchors for scroll open/closing
+        _minAnchorOpen = _scrollRect.anchorMin;                                         //get the anchor position in the open position
+        _scrollRect.anchorMin = new Vector2(_scrollRect.anchorMin.x,_minAnchorClosed);  //close the scroll
+
+        //Assign button listeners
         _mainMenuButton.onClick.AddListener(() =>
         {
             _mainMenuConfirmationPopup.SetActive(true);
         });
-
         _resumeButton.onClick.AddListener(() => GameStateManager.Instance.ChangeState(GameStateManager.Instance.DefaultState));
         _viewDeckButton.onClick.AddListener(OpenDeckView);
     }
-
-
 
     public void OpenDeckView()
     {
@@ -29,22 +40,39 @@ public class PauseMenu : Singleton<PauseMenu>
 
     public void PauseGame()
     {
-        Time.timeScale = 0;
-        _pauseMenuObject.SetActive(true);
+        if(Time.timeScale == 0) return;     //Don't try and re-open if its already open
         
+        _pauseMenuObject.SetActive(true);
+
         if (DeckMenuController.Instance != null && DeckMenuController.Instance.IsValid())
             _viewDeckButton.interactable = true;
         else
             _viewDeckButton.interactable = false;
 
+        _menuContent.SetActive(false);
+        OpenScroll();
     }
 
     public void UnpauseGame()
     {
         Time.timeScale = 1;
-        _pauseMenuObject.SetActive(false);
-
+        CloseScroll();
     }
 
+    private void OpenScroll()
+    {  
+        _scrollRect.DOAnchorMin(_minAnchorOpen, _timeToOpen).OnComplete(() => 
+        {
+            _menuContent.SetActive(true);
+            Time.timeScale = 0;
+        });
+    }
+
+    private void CloseScroll()
+    {
+        _menuContent.SetActive(false);
+        Vector2 closedAnchor = new Vector2(_scrollRect.anchorMin.x, _minAnchorClosed);
+        _scrollRect.DOAnchorMin(closedAnchor, _timeToOpen).OnComplete(() => _pauseMenuObject.SetActive(false));
+    }
 }
 
