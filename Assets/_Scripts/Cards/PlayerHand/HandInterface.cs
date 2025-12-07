@@ -2,7 +2,7 @@ using DG.Tweening;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
+using Unity.Collections;
 using UnityEngine;
 
 [RequireComponent (typeof(RectTransform))]
@@ -13,7 +13,7 @@ public class HandInterface : MonoBehaviour
     //Hand
     private List<PhysicalCard> _physicalCards = new List<PhysicalCard>();
     private ObjectPool _physicalCardPool;
-    [SerializeField] private int _poolAmount = 5;
+    [SerializeField] private int _poolAmount = 8;
     [SerializeField] GameObject PhysCardPrefab;
 
     //Info Card
@@ -21,7 +21,7 @@ public class HandInterface : MonoBehaviour
     [SerializeField] private float _infoCardScale = 1.75f;
     [SerializeField] private float _infoCardY = 100f;
     [SerializeField] private float _infoCardTransitionTime = 0.5f;
-    private DG.Tweening.Sequence infoCardSeq;
+    private Sequence infoCardSeq;
     private bool isHoveringCard;
     
     //-----------------------------------------------------
@@ -84,6 +84,7 @@ public class HandInterface : MonoBehaviour
         {
             newPosition.x = (i * slotWidth) + (slotWidth / 2f);
             _physicalCards[i].gameObject.transform.localPosition = newPosition;
+            _physicalCards[i].gameObject.transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, -4f));
             _physicalCards[i].SetDockedPosition(newPosition);
         }
     }
@@ -97,7 +98,7 @@ public class HandInterface : MonoBehaviour
     private void ShowInfoCard(Card card)
     {
         isHoveringCard = true;
-        _infoCard.GetComponentInChildren<PhysicalCard>().SetDisplayInformation(card);
+        _infoCard.GetComponentInChildren<CardView>().SetDisplayInformation(card);
 
         if (!_infoCard.activeSelf)
         {

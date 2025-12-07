@@ -1,20 +1,13 @@
 using UnityEngine;
-using UnityEngine.EventSystems;
 using DG.Tweening;
-using TMPro;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
-public class PhysicalCard : MonoBehaviour,
-    IPointerExitHandler, IPointerEnterHandler,
+
+public class PhysicalCard : CardView, IPointerExitHandler, IPointerEnterHandler,
     IBeginDragHandler, IDragHandler, IEndDragHandler
 {
-    [SerializeField] private TMP_Text _nameText;
-    [SerializeField] private TMP_Text _descriptionText;
-
-    [SerializeField] private bool _isInteractable = true;
     [SerializeField] private LayerMask _dropTargetMask;
-
-    private Card _associatedCard;
 
     private bool _IsHeld;
     private Vector3 _dockedLocalPosition;
@@ -26,9 +19,7 @@ public class PhysicalCard : MonoBehaviour,
     public event System.Action<Card> HoverStartEvent;
     public event System.Action HoverEndEvent;
 
-    //-----------------------------------------------------
-    //-----------------------------------------------------
-
+    
     private void Start()
     {
         _dockedLocalPosition = gameObject.transform.localPosition;
@@ -39,19 +30,11 @@ public class PhysicalCard : MonoBehaviour,
         _hoverSequence.Join(gameObject.transform.DOLocalMoveY(_dockedLocalPosition.y + 15f, 0.5f));
     }
 
-    public void SetDisplayInformation(Card card)
-    {
-        _nameText.text = card.cardName;
-        _descriptionText.text = card.cardDescription;
-    }
-
     // -----------------
     // Dragging
     // -----------------
     public void OnBeginDrag(PointerEventData eventData)
     {
-       if (_isInteractable == false) return;
-
         _IsHeld = true;
         _hoverSequence?.Pause();
         HoverEndEvent?.Invoke();
@@ -59,17 +42,12 @@ public class PhysicalCard : MonoBehaviour,
 
     public void OnDrag(PointerEventData eventData)
     {
-        if (_isInteractable == false) return;
-
         gameObject.transform.position += (Vector3)eventData.delta;
-        CheckCardTargeting();
-        
+        CheckCardTargeting(); 
     }
 
     public void OnEndDrag(PointerEventData eventData)
-    {
-        if (_isInteractable == false) return;
-        
+    {        
         _IsHeld = false;
         if (_currentTarget != null && _currentTarget.IsInteractable())
         {
@@ -109,7 +87,7 @@ public class PhysicalCard : MonoBehaviour,
     // -----------------
     public void OnPointerEnter(PointerEventData eventData)
     {
-        if (_IsHeld || _isInteractable == false)
+        if (_IsHeld)
             return;
 
         _hoverSequence.Restart();
@@ -118,7 +96,7 @@ public class PhysicalCard : MonoBehaviour,
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        if (_IsHeld || _isInteractable == false)
+        if (_IsHeld)
             return;
 
         gameObject.transform.DOLocalMove(_dockedLocalPosition, 0.5f);
@@ -130,14 +108,4 @@ public class PhysicalCard : MonoBehaviour,
         _dockedLocalPosition = position;
     }
 
-    // -----------------
-    // Get/Set
-    // -----------------
-    public Card AssociatedCard => _associatedCard;
-
-    public void SetAssociatedCard(Card card)
-    {
-        _associatedCard = card;
-        SetDisplayInformation(card);
-    }
 }

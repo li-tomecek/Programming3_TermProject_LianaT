@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6274275896007254088}
   - component: {fileID: 4519613992591623384}
   m_Layer: 5
-  m_Name: PhysicalCard
+  m_Name: CardView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -93,10 +93,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _nameText: {fileID: 5431885621732192052}
   _descriptionText: {fileID: 8534454341279930307}
-  _isInteractable: 0
-  _dropTargetMask:
-    serializedVersion: 2
-    m_Bits: 64
 --- !u!114 &4519613992591623384
 MonoBehaviour:
   m_ObjectHideFlags: 0
