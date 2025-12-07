@@ -1,4 +1,5 @@
 using Unity.VisualScripting;
+using UnityEditor.ShaderKeywordFilter;
 using UnityEngine;
 
 public class SpellComponent : MonoBehaviour, IClickable
@@ -6,6 +7,7 @@ public class SpellComponent : MonoBehaviour, IClickable
     [Header("Sprite")]
     [SerializeField] SpriteRenderer _spriteRenderer;
     [SerializeField] Sprite _defaultSprite, _selectedSprite, _disabledSprite;
+    [SerializeField] ParticleSystem _particles;
     [SerializeField] bool _isInteractable = true;
     [SerializeField] float _disabledAlpha = 0.5f;
     private Color _spriteColor = Color.white;
@@ -24,6 +26,7 @@ public class SpellComponent : MonoBehaviour, IClickable
     {
         gameObject.transform.LookAt(Camera.main.transform, Vector3.up);
         _spriteRenderer.color = _spriteColor;
+        _particles.Stop();
     }
 
     #region Rotation & Interaction
@@ -109,16 +112,21 @@ public class SpellComponent : MonoBehaviour, IClickable
             case SpriteVariant.Default:
                 if (_defaultSprite)
                     _spriteRenderer.sprite = _defaultSprite;
+                    _particles.Stop();
+                    _particles.Clear();
                 break;
 
             case SpriteVariant.Selected:
                 if (_selectedSprite)
                     _spriteRenderer.sprite = _selectedSprite;
+                    _particles.Play();
                 break;
 
             case SpriteVariant.Disabled:
                 if (_disabledSprite)
                     _spriteRenderer.sprite = _disabledSprite;
+                    _particles.Stop();
+                    _particles.Clear();
                 break;
         }
     }

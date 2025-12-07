@@ -11,6 +11,7 @@ public class Disk : DropTarget
     
     [Header("Disk Rotation")]
     public float TimeToRotate = 0.6f;
+    
     [Header("Spell Enlarge on Win")]
     [SerializeField] float _spellExpansionFactor = 0.5f;
     [SerializeField] float _timeToExpand = 0.3f;
@@ -123,8 +124,6 @@ public class Disk : DropTarget
     {
         if (droppedObject is Card && _isTargetable)
             _activeCard = (Card)droppedObject;
-        
-        Debug.Log("Is being dropped on");
     }
     #endregion
     
@@ -135,6 +134,11 @@ public class Disk : DropTarget
     {
         _activeCard?.Play(this);
         _activeCard = null;
+    }
+
+    public IEnumerator PlayCardAnimation()
+    {
+        yield return 0;
     }
 
     public void ResetState()

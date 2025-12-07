@@ -5,8 +5,6 @@ using UnityEngine;
 public class DuelManager : Singleton<DuelManager>
 {
 
-    //List<Coroutine> _routines = new List<Coroutine>();
-
     // ---------------------
     //      Coroutines
     // ---------------------
@@ -16,10 +14,6 @@ public class DuelManager : Singleton<DuelManager>
         yield return StartCoroutine(ResolveDuel(1));
         
         BattleStateManager.Instance.ChangeState(BattleStateManager.Instance.PreparationPhase);
-        // foreach (var routine in _routines)
-        //     yield return routine;
-
-        // _routines.Clear();
     }
 
     public IEnumerator ResolveDuel(int diskIndex)
