@@ -33,7 +33,7 @@ public class SpellComponent : MonoBehaviour, IClickable
 
     public void OnClick()
     {
-        if (_isInteractable)
+        if (_isInteractable && BattleStateManager.Instance.CurrentState is PreparationPhase)
         {
             SpellComponent activeSpell = gameObject.GetComponentInParent<Disk>()?.GetActiveSpell();
             if (activeSpell != null && activeSpell.IsInteractable())

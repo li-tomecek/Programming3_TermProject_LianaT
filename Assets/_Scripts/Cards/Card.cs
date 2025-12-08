@@ -17,7 +17,7 @@ public class Card : ScriptableObject, IDroppable
         TargetDisk = _targetType == TargetType.Opponent ? castingDisk.GetOpposingDisk() : castingDisk;
         
         //To be overriden by different card types
-        Debug.Log($"Applied card: {cardName}");
+        Debug.Log($"Applied card: {cardName} with target {TargetDisk}");
     }
 
 }
