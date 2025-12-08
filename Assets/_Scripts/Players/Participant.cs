@@ -28,9 +28,9 @@ public abstract class Participant : MonoBehaviour
         OnHealthChanged?.Invoke(Health);
         //Debug.Log($" {name} took {damageDealt} damage.\n Health: {Health}/{MaxHealth}");
         
+        Debug.Log(BattleStateManager.Instance.GameOver);
         if(Health <= 0 && BattleStateManager.Instance.GameOver == false)
         {
-
             BattleStateManager.Instance.GameOver = true;    //so that if it happens "at the same time" then the first player to lose is the loser
 
             if (this is Player)

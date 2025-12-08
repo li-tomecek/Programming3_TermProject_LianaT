@@ -27,6 +27,7 @@ public class InterfaceManager : Singleton<InterfaceManager>
 
     public void ShowResultsScreen(bool gameWon)
     {
+        Debug.Log("Showing results screen");
         _resultsScreen.gameObject.SetActive(true);
         _resultsScreen.PlayResultsSequence(gameWon);
     }
