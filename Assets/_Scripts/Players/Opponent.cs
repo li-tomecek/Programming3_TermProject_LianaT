@@ -31,7 +31,7 @@ public class Opponent : Participant
         foreach (Disk disk in Disks)
         {
             if (disk.IsRotationLocked())
-                break;
+                continue;
 
             disk.SetActiveSpell(_currentStrategy.ChooseSpell(disk, disk.GetOpposingDisk().FindSpellAtFront()));
         }

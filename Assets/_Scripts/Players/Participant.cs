@@ -53,7 +53,7 @@ public abstract class Participant : MonoBehaviour
         foreach (Disk disk in Disks)
         {
             if (disk.IsRotationLocked())
-                break;
+                continue;
             
             rotationTime = Mathf.Max(rotationTime, disk.TimeToRotate);
             disk.RotateToFront(disk.GetActiveSpell());
