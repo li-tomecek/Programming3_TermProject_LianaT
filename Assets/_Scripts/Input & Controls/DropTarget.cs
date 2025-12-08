@@ -9,7 +9,7 @@ public abstract class DropTarget : MonoBehaviour
 
     public virtual void OnDragStartHover(IDroppable droppedObject) { }
     public virtual void OnDragEndHover() { }
-    public virtual void OnDrop(IDroppable droppedObject) { }
+    public virtual void OnDrop(IDroppable droppedObject, Vector3 cursorPosition) { }
 
     public void SetTargetable(bool targetable) { _isTargetable = targetable; }
     public bool IsInteractable() { return _isTargetable; }

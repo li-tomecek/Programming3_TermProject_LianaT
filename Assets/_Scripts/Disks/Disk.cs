@@ -17,6 +17,7 @@ public class Disk : DropTarget
     [SerializeField] float _timeExpanded = 0.5f;
 
     private Card _activeCard;
+    [SerializeField] CardAnimator _cardAnimator;
 
     private SpellComponent[] _spellList;
     private SpellComponent _activeSpell;        //the spell in that has been chosen to rotate to the front
@@ -119,10 +120,14 @@ public class Disk : DropTarget
         //stop highlighting disk here
     }
 
-    public override void OnDrop(IDroppable droppedObject)
+    public override void OnDrop(IDroppable droppedObject, Vector3 cursorPosition)
     {
         if (droppedObject is Card && _isTargetable)
+        {
             _activeCard = (Card)droppedObject;
+            if(_cardAnimator != null)
+                StartCoroutine(_cardAnimator.PlayCardApplicationAnimation(_activeCard, cursorPosition));
+        }
     }
     #endregion
     
@@ -137,13 +142,19 @@ public class Disk : DropTarget
 
     public IEnumerator PlayCardAnimation()
     {
-        yield return 0;
+        if(_cardAnimator != null)
+            yield return StartCoroutine(_cardAnimator.PlayCardUsedAnimation(Camera.main.WorldToScreenPoint(transform.position)));    //screen position of the venter of the disk
+        PlayCard();
     }
 
     public void ResetState()
     {
+        _activeCard = null;
         _damageMultiplier = 1f;
         _isRotationLocked = false;
+        
+        if(_cardAnimator != null)
+            _cardAnimator.HideCard();
     }
     
     public IEnumerator EnlargeSpellOnWin()

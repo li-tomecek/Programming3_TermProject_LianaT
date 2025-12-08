@@ -9,7 +9,7 @@ public class ResolutionPhase : IState
         foreach (Disk playerDisk in Player.Instance.GetDisks())
         {
             if (playerDisk.GetActiveCard()?.Type == CardType.OnStart)
-                playerDisk.PlayCard();
+                RoutineSequencer.Instance.AddRoutine(playerDisk.PlayCardAnimation());
         }
 
         //2. Opponent Chooses spells - must come before disk rotation

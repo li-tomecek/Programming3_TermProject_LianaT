@@ -40,10 +40,10 @@ public class DuelManager : Singleton<DuelManager>
         //3. Apply cards
         //-------------------------------
         if (!duelTied && winner.GetActiveCard()?.Type == CardType.OnWin)    //a. Apply 'OnWin' cards
-            winner.PlayCard();
+            yield return winner.PlayCardAnimation();
 
         if (!duelTied && loser.GetActiveCard()?.Type == CardType.OnLoss)    //b. Apply 'OnLoss' cards
-            loser.PlayCard();
+            yield return loser.PlayCardAnimation();
 
 
         //4. Deal damage & reset effects

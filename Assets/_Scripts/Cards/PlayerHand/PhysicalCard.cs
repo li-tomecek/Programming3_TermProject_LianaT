@@ -51,7 +51,7 @@ public class PhysicalCard : CardView, IPointerExitHandler, IPointerEnterHandler,
         _IsHeld = false;
         if (_currentTarget != null && _currentTarget.IsInteractable())
         {
-            _currentTarget.OnDrop(_associatedCard);
+            _currentTarget.OnDrop(_associatedCard, eventData.position);
             Player.Instance.DiscardCard(_associatedCard, this);
         }
         else
