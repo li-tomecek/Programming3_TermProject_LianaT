@@ -3158,11 +3158,15 @@ MonoBehaviour:
   _darkAttack: {fileID: 50417846}
   _holyAttack: {fileID: 1701084780}
   _arcaneAttack: {fileID: 165623304}
+  _darkSFX: {fileID: 11400000, guid: 44a0d85fecd32764eb12298919cb15e9, type: 2}
+  _holySFX: {fileID: 11400000, guid: 780ec93b684d9be4b9d3f2b125570958, type: 2}
+  _arcaneSFX: {fileID: 11400000, guid: 5cccb5f4b3a3f58449737b4ace88c491, type: 2}
   _damageIndicatorPrefab: {fileID: 1240891804987626886, guid: 0d10f282e5f670a408175e0877369e4e, type: 3}
   _parentCanvas: {fileID: 1450631677}
   _healthColor: {r: 0, g: 0.5660378, b: 0.4177643, a: 1}
   _damageColor: {r: 0.59607846, g: 0.15294118, b: 0.15294118, a: 1}
   _poolAmount: 3
+  _healSFX: {fileID: 11400000, guid: 6d7f28fe48083654ea0af07828ca13dc, type: 2}
   _playerDamageSpawn: {fileID: 1605840730}
   _opponentDamageSpawn: {fileID: 915707990}
 --- !u!1 &1848481846

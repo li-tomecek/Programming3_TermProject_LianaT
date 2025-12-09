@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3f26ca04205cc84ea565c48f6b3110f, type: 3}
+  m_Name: HIt_Holy_SFX
+  m_EditorClassIdentifier: 
+  <Clip>k__BackingField: {fileID: 8300000, guid: 6c48b1ad42211d1469d385b1b85195f5, type: 3}
+  <Volume>k__BackingField: 0.5
+  <Pitch>k__BackingField: 1
+  <Loop>k__BackingField: 0
