@@ -25,7 +25,7 @@ public abstract class Participant : MonoBehaviour
         Health -= damageDealt;
         Health = Math.Clamp(Health, 0, MaxHealth);
 
-        OnHealthChanged?.Invoke(Health);
+        OnHealthChanged?.Invoke(-damageDealt);
         //Debug.Log($" {name} took {damageDealt} damage.\n Health: {Health}/{MaxHealth}");
         
         Debug.Log(BattleStateManager.Instance.GameOver);

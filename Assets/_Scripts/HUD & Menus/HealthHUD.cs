@@ -17,10 +17,8 @@ public class HealthHUD : MonoBehaviour
         _nameText.text = _participant.name;
     }
 
-    private void UpdateSlider(int totalHealth)
+    private void UpdateSlider(int healthChanged)
     {
-        //don't really need to pass totalHealth
-        //_slider.value = (totalHealth / (float)_participant.GetMaxHealth());
         StartCoroutine(AnimateSlider(((float) _participant.GetCurrentHealth() / (float)_participant.GetMaxHealth())));
     }
 
