@@ -13,19 +13,15 @@ public class CombatEffects : MonoBehaviour
     [SerializeField] Canvas _parentCanvas;
     [SerializeField] Color _healthColor, _damageColor;
     [SerializeField] int _poolAmount = 3;
+    [SerializeField] Transform _playerDamageSpawn, _opponentDamageSpawn;
     private ObjectPool _indicatorPool;
 
     void Start()
     {
         _indicatorPool = new ObjectPool(_damageIndicatorPrefab.gameObject, _poolAmount, _parentCanvas.gameObject);
         
-        Player.Instance.OnHealthChanged += (int amount) => {
-            ShowDamageIndicator(amount, Player.Instance.transform);
-        };
-        
-        Opponent.Instance.OnHealthChanged += (int amount) => {
-            ShowDamageIndicator(amount, Opponent.Instance.transform);
-        };
+        Player.Instance.OnHealthChanged += (int amount) => {ShowDamageIndicator(amount, _playerDamageSpawn);};
+        Opponent.Instance.OnHealthChanged += (int amount) => {ShowDamageIndicator(amount, _opponentDamageSpawn);};
     }
 
     public void PlayAttackEffect(Vector3 targetPosition, SpellType spellType)

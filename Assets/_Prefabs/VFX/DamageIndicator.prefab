@@ -152,4 +152,4 @@ MonoBehaviour:
   _damageText: {fileID: 1057760513424838517}
   _activeTime: 2
   _heightOffset: 0
-  _heightTravelled: 100
+  _heightTravelled: 1.5
