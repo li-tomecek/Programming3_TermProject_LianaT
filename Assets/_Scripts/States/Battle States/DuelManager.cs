@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class DuelManager : Singleton<DuelManager>
 {
-
+    [SerializeField] ParticleSystem _darkAttack;
+    [SerializeField] ParticleSystem _holyAttack;
+    [SerializeField] ParticleSystem _arcaneAttack;
+ 
     // ---------------------
     //      Coroutines
     // ---------------------
@@ -33,9 +36,11 @@ public class DuelManager : Singleton<DuelManager>
 
         //2. Play animation here!
         //-------------------------------
-        if(!duelTied)
-            yield return StartCoroutine(winner.EnlargeSpellOnWin());      //temp
-
+        if (!duelTied)
+        {
+            PlayAttackEffect(loser.GetActiveSpell().transform.position, winner.GetActiveSpell().SpellType);
+            yield return StartCoroutine(winner.EnlargeSpellOnWin());      //temp   
+        }
         
         //3. Apply cards
         //-------------------------------
@@ -78,5 +83,26 @@ public class DuelManager : Singleton<DuelManager>
         }
 
         return second;        //second disk won the matchup
+    }
+
+    private void PlayAttackEffect(Vector3 targetPosition, SpellType spellType)
+    {
+        switch (spellType)
+        {
+            case SpellType.Holy:
+            _holyAttack.gameObject.transform.position = targetPosition;
+            _holyAttack.Play();
+            break;
+
+            case SpellType.Dark:
+            _darkAttack.gameObject.transform.position = targetPosition;
+            _darkAttack.Play();
+            break;
+
+            case SpellType.Arcane:
+            _arcaneAttack.gameObject.transform.position = targetPosition;
+            _arcaneAttack.Play();
+            break;
+        }
     }
 }
