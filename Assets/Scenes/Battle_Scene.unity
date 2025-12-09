@@ -1629,6 +1629,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2095841913}
     - target: {fileID: 6346148867592105539, guid: 1d87a5ceed973ee459684100deb89327, type: 3}
+      propertyPath: _timeExpanded
+      value: 0.65
+      objectReference: {fileID: 0}
+    - target: {fileID: 6346148867592105539, guid: 1d87a5ceed973ee459684100deb89327, type: 3}
       propertyPath: _timeToExpand
       value: 0.15
       objectReference: {fileID: 0}
@@ -2304,6 +2308,10 @@ PrefabInstance:
       propertyPath: _opposingDisk
       value: 
       objectReference: {fileID: 7643969756519794156}
+    - target: {fileID: 6346148867592105539, guid: 1d87a5ceed973ee459684100deb89327, type: 3}
+      propertyPath: _timeExpanded
+      value: 0.65
+      objectReference: {fileID: 0}
     - target: {fileID: 6346148867592105539, guid: 1d87a5ceed973ee459684100deb89327, type: 3}
       propertyPath: _timeToExpand
       value: 0.15
@@ -3655,6 +3663,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 624827988}
     - target: {fileID: 6346148867592105539, guid: 1d87a5ceed973ee459684100deb89327, type: 3}
+      propertyPath: _timeExpanded
+      value: 0.65
+      objectReference: {fileID: 0}
+    - target: {fileID: 6346148867592105539, guid: 1d87a5ceed973ee459684100deb89327, type: 3}
       propertyPath: _timeToExpand
       value: 0.15
       objectReference: {fileID: 0}
@@ -4279,6 +4291,10 @@ PrefabInstance:
       propertyPath: _opposingDisk
       value: 
       objectReference: {fileID: 1563129821}
+    - target: {fileID: 6346148867592105539, guid: 1d87a5ceed973ee459684100deb89327, type: 3}
+      propertyPath: _timeExpanded
+      value: 0.65
+      objectReference: {fileID: 0}
     - target: {fileID: 6346148867592105539, guid: 1d87a5ceed973ee459684100deb89327, type: 3}
       propertyPath: _timeToExpand
       value: 0.15
