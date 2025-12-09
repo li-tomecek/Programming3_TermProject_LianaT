@@ -1,5 +1,4 @@
 using System;
-using TMPro;
 using UnityEngine;
 
 public class CombatEffects : MonoBehaviour
@@ -20,8 +19,13 @@ public class CombatEffects : MonoBehaviour
     {
         _indicatorPool = new ObjectPool(_damageIndicatorPrefab.gameObject, _poolAmount, _parentCanvas.gameObject);
         
-        Player.Instance.OnHealthChanged += (int amount) => {ShowDamageIndicator(amount, Player.Instance.transform);};
-        Opponent.Instance.OnHealthChanged += (int amount) => {ShowDamageIndicator(amount, Opponent.Instance.transform);};
+        Player.Instance.OnHealthChanged += (int amount) => {
+            ShowDamageIndicator(amount, Player.Instance.transform);
+        };
+        
+        Opponent.Instance.OnHealthChanged += (int amount) => {
+            ShowDamageIndicator(amount, Opponent.Instance.transform);
+        };
     }
 
     public void PlayAttackEffect(Vector3 targetPosition, SpellType spellType)

@@ -12,10 +12,10 @@ public class CardAnimator : MonoBehaviour
     [SerializeField] Transform _dockedPosition;
     
     
-    public IEnumerator PlayCardApplicationAnimation(Card card, Vector3 startScreenPosition)
+    public IEnumerator PlayCardApplicationAnimation(Card card, Vector3 startPosition)
     {
         _cardView.SetAssociatedCard(card);
-        _cardView.transform.position = startScreenPosition;
+        _cardView.transform.position = startPosition;
         
         _cardView.gameObject.SetActive(true);
 
@@ -26,11 +26,11 @@ public class CardAnimator : MonoBehaviour
         yield return sequence.WaitForCompletion();          //This one doesnt have to be a coroutine, as there is nothing that needs to wait for it.
     }
 
-    public IEnumerator PlayCardUsedAnimation(Vector3 targetScreenPosition)
+    public IEnumerator PlayCardUsedAnimation(Vector3 targetPosition)
     {
         Sequence sequence = DOTween.Sequence();
 
-        sequence.Append(_cardView?.gameObject.transform.DOMove(targetScreenPosition, _timeToExpand));
+        sequence.Append(_cardView?.gameObject.transform.DOMove(targetPosition, _timeToExpand));
         sequence.Join(_cardView?.gameObject.transform.DOScale(_expandedScale, _timeToExpand));
         sequence.AppendInterval(_timeExpanded);
 
