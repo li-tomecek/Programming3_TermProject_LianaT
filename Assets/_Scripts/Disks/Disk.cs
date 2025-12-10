@@ -10,14 +10,10 @@ public class Disk : DropTarget
     
     [Header("Disk Rotation")]
     public float TimeToRotate = 0.6f;
-    
-    [Header("Spell Enlarge on Win")]
-    [SerializeField] float _spellExpansionFactor = 0.5f;
-    [SerializeField] float _timeToExpand = 0.3f;
-    [SerializeField] float _timeExpanded = 0.5f;
 
+    [Header("Applied Cards")]
+    [SerializeField] AppliedCardAnimator _cardAnimator;
     private Card _activeCard;
-    [SerializeField] CardAnimator _cardAnimator;
 
     private SpellComponent[] _spellList;
     private SpellComponent _activeSpell;        //the spell in that has been chosen to rotate to the front
@@ -107,7 +103,7 @@ public class Disk : DropTarget
     #endregion
 
     //-----------------------------
-    //      Drag and Drop        
+    //      Card Drag and Drop        
     //-----------------------------
     #region
     public override void OnDragStartHover(IDroppable droppedObject)
@@ -131,9 +127,9 @@ public class Disk : DropTarget
     }
     #endregion
     
-    //-----------------------------
-    //      Combat State       
-    //-----------------------------
+    //---------------------------------
+    //     Applied Cards and State    
+    //---------------------------------
     public void PlayCard()
     {
         _activeCard?.Play(this);
@@ -155,16 +151,6 @@ public class Disk : DropTarget
         
         if(_cardAnimator != null)
             _cardAnimator.HideCard();
-    }
-    
-    public IEnumerator EnlargeSpellOnWin()
-    {
-        Sequence sequence = DOTween.Sequence();
-        sequence.Append(_activeSpell.transform.DOScale(_spellExpansionFactor, _timeToExpand).SetRelative(true));      //TODO: Fix magic numbers
-        sequence.AppendInterval(_timeExpanded);
-        sequence.Append(_activeSpell.transform.DOScale(-_spellExpansionFactor, _timeToExpand).SetRelative(true));
-
-        yield return sequence.WaitForCompletion();
     }
 
     //-----------------------------

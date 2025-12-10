@@ -2,7 +2,7 @@ using System.Collections;
 using DG.Tweening;
 using UnityEngine;
 
-public class CardAnimator : MonoBehaviour
+public class AppliedCardAnimator : MonoBehaviour
 {
     [SerializeField] private CardView _cardView;
     [SerializeField] float _timeToMinimize, _timeToExpand;

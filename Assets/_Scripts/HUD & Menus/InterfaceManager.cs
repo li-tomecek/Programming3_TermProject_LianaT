@@ -4,8 +4,8 @@ using UnityEngine.UI;
     Handles logic related to smaller interface elements (rather than larger systems such as the PhysicalHand, which is managed directly through the player)
     For example:
      - 'Ready' button
-     - Card popups (TODO)
-     - Damage indicators(TODO)
+     - Results Screen
+
 
 */
 public class InterfaceManager : Singleton<InterfaceManager>
@@ -27,7 +27,6 @@ public class InterfaceManager : Singleton<InterfaceManager>
 
     public void ShowResultsScreen(bool gameWon)
     {
-        Debug.Log("Showing results screen");
         _resultsScreen.gameObject.SetActive(true);
         _resultsScreen.PlayResultsSequence(gameWon);
     }

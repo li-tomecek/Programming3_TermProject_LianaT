@@ -43,7 +43,7 @@ public class DuelManager : Singleton<DuelManager>
         if (!duelTied)
         {
             _combatEffects.PlayAttackEffect(loser.GetActiveSpell().transform.position, winner.GetActiveSpell().SpellType);
-            yield return StartCoroutine(winner.EnlargeSpellOnWin());     
+            yield return StartCoroutine(_combatEffects.EnlargeSpellOnWin(winner.GetActiveSpell()));     
         }
         
         //3. Apply cards

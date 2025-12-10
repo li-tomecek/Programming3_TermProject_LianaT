@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using DG.Tweening;
 using UnityEngine;
 
 public class CombatEffects : MonoBehaviour
@@ -11,6 +13,11 @@ public class CombatEffects : MonoBehaviour
     [SerializeField] SoundEffect _darkSFX;
     [SerializeField] SoundEffect _holySFX;
     [SerializeField] SoundEffect _arcaneSFX;
+
+    [Header("Spell Enlarge on Win")]
+    [SerializeField] float _spellExpansionFactor = 0.35f;
+    [SerializeField] float _timeToExpand = 0.15f;
+    [SerializeField] float _timeExpanded = 0.65f;
 
     [Header("DamageIndicator")]
     [SerializeField] DamageIndicator _damageIndicatorPrefab;
@@ -65,6 +72,16 @@ public class CombatEffects : MonoBehaviour
     {
         Color color = (amount > 0) ? _healthColor : _damageColor;
         _indicatorPool.GetActivePooledObject().GetComponent<DamageIndicator>().ShowIndicatorAtTarget(Math.Abs(amount).ToString(), target, color);
+    }
+
+    public IEnumerator EnlargeSpellOnWin(SpellComponent spell)
+    {
+        Sequence sequence = DOTween.Sequence();
+        sequence.Append(spell.transform.DOScale(_spellExpansionFactor, _timeToExpand).SetRelative(true));      //TODO: Fix magic numbers
+        sequence.AppendInterval(_timeExpanded);
+        sequence.Append(spell.transform.DOScale(-_spellExpansionFactor, _timeToExpand).SetRelative(true));
+
+        yield return sequence.WaitForCompletion();
     }
 
 }
