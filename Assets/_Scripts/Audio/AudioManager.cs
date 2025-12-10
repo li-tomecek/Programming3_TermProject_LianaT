@@ -8,7 +8,7 @@ public class AudioManager : Singleton<AudioManager>
     private AudioSource _musicSource;
     private List<AudioSource> _audioSources = new List<AudioSource>();
 
-    void Awake()
+    public override void Awake()
     {   base.Awake();
         _musicSource = GetAudioSource();
     }
