@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Hit_Arcane_SFX
   m_EditorClassIdentifier: 
   <Clip>k__BackingField: {fileID: 8300000, guid: 7db1957cd11c71143b6cb75633c832d4, type: 3}
-  <Volume>k__BackingField: 0.5
+  <Volume>k__BackingField: 0.25
   <Pitch>k__BackingField: 0.7
   <Loop>k__BackingField: 0

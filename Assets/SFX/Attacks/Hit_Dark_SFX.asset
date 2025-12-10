@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Hit_Dark_SFX
   m_EditorClassIdentifier: 
   <Clip>k__BackingField: {fileID: 8300000, guid: f221d2c9530282b42b4d7a151e9bc618, type: 3}
-  <Volume>k__BackingField: 0.5
+  <Volume>k__BackingField: 0.25
   <Pitch>k__BackingField: 0.75
   <Loop>k__BackingField: 0

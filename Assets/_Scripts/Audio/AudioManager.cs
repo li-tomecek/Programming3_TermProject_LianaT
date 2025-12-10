@@ -8,9 +8,15 @@ public class AudioManager : Singleton<AudioManager>
     private AudioSource _musicSource;
     private List<AudioSource> _audioSources = new List<AudioSource>();
 
+    void Awake()
+    {   base.Awake();
+        _musicSource = GetAudioSource();
+    }
+
     public void SetMusic(SoundEffect music)
     {
-        _musicSource?.Stop();
+        if(_musicSource.isPlaying)
+            _musicSource.Stop();
         AssignSource(music, _musicSource);
         _musicSource.Play();
     }

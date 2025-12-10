@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Heal_SFX
   m_EditorClassIdentifier: 
   <Clip>k__BackingField: {fileID: 8300000, guid: e103576b3d2ad4347a2122499b14bcb1, type: 3}
-  <Volume>k__BackingField: 2
+  <Volume>k__BackingField: 1.75
   <Pitch>k__BackingField: 1
   <Loop>k__BackingField: 0

@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: HIt_Holy_SFX
   m_EditorClassIdentifier: 
   <Clip>k__BackingField: {fileID: 8300000, guid: 6c48b1ad42211d1469d385b1b85195f5, type: 3}
-  <Volume>k__BackingField: 0.5
+  <Volume>k__BackingField: 0.25
   <Pitch>k__BackingField: 1
   <Loop>k__BackingField: 0

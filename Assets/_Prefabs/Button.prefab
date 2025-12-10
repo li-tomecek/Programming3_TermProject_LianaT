@@ -136,6 +136,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _scaleAmount: 1.08
   _scaleTime: 0.5
+  _clickSFX: {fileID: 11400000, guid: 057cba6e9b1c5f540917a968b2f79fd0, type: 2}
 --- !u!1 &3890303033715320761
 GameObject:
   m_ObjectHideFlags: 0

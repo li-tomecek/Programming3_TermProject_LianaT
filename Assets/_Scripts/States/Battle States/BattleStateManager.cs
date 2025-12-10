@@ -7,6 +7,8 @@ public class BattleStateManager : Singleton<BattleStateManager>
     public bool GameOver = false;
     private IState _currentState;
 
+    [SerializeField] SoundEffect _battleMusic;
+
     //States
     private PreparationPhase _prepPhase = new PreparationPhase();
     private ResolutionPhase _resolutionPhase = new ResolutionPhase();
@@ -18,6 +20,9 @@ public class BattleStateManager : Singleton<BattleStateManager>
 
     void Start()
     {
+        if(_battleMusic)
+            AudioManager.Instance.SetMusic(_battleMusic);
+            
         StartCoroutine(Setup());    //need to add a delay to make sure everyone's start functions have happened
     }
 

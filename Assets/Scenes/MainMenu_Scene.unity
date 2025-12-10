@@ -1385,6 +1385,7 @@ MonoBehaviour:
   _startButton: {fileID: 1412948831}
   _quitButton: {fileID: 1408564170}
   _quitConfirmationPopup: {fileID: 292567043}
+  _menuMusic: {fileID: 11400000, guid: dd487c0a247ddfd4bae741b98fa52a2f, type: 2}
 --- !u!1 &1408564167
 GameObject:
   m_ObjectHideFlags: 0
@@ -1521,6 +1522,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _scaleAmount: 1.08
   _scaleTime: 0.5
+  _clickSFX: {fileID: 11400000, guid: 057cba6e9b1c5f540917a968b2f79fd0, type: 2}
 --- !u!1 &1412948829
 GameObject:
   m_ObjectHideFlags: 0
@@ -1657,6 +1659,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _scaleAmount: 1.08
   _scaleTime: 0.5
+  _clickSFX: {fileID: 11400000, guid: 057cba6e9b1c5f540917a968b2f79fd0, type: 2}
 --- !u!1 &1566200527
 GameObject:
   m_ObjectHideFlags: 0

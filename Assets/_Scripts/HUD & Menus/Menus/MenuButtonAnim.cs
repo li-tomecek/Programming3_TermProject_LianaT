@@ -10,6 +10,8 @@ public class MenuButtonAnim : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     private Vector3 _defaultScale;
     [SerializeField] float _scaleAmount = 1.25f;
     [SerializeField] float _scaleTime = 0.5f;
+
+    [SerializeField] SoundEffect _clickSFX;
     Tween tween;
 
     void Start()
@@ -20,6 +22,8 @@ public class MenuButtonAnim : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         _button.onClick.AddListener(() => 
         { 
             _button.transform.localScale = _defaultScale;
+            if(_clickSFX)
+                AudioManager.Instance?.PlaySFX(_clickSFX);
         });  
     }
     
