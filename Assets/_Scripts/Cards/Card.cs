@@ -1,6 +1,5 @@
 using UnityEngine;
 
-
 [CreateAssetMenu(fileName = "NewCard", menuName = "ScriptableObjects/Cards")]
 public class Card : ScriptableObject, IDroppable
 {
