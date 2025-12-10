@@ -4,7 +4,7 @@ using DG.Tweening;
 using UnityEngine.EventSystems;
 
 [RequireComponent(typeof(Button))]
-public class MenuButtonAnim : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class ButtonEffects : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     private Button _button;
     private Vector3 _defaultScale;
