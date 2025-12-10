@@ -9,8 +9,8 @@ public class LevelManager : Singleton<LevelManager>//, ISaveable
     #region
 
     private const string PERSISTENT_SCENE_NAME = "Persistent_Scene";
-    private const int MAIN_MENU_SCENE_INDEX = 0;
-    private const int PLAYABLE_LEVEL_INDEX = 1;
+    private const int MAIN_MENU_SCENE_INDEX = 1;
+    private const int PLAYABLE_LEVEL_INDEX = 2;
 
     public UnityEvent OnSceneLoaded = new UnityEvent();
 
