@@ -28,5 +28,5 @@ The player may also use **skill cards** (drawn from a deck each turn) to trigger
 Be careful, the opponent will not always choose their spells randomly! It will start by attempting to win as many duels as possible and become less agressive and more convervative with their health as it goes below certain thresholds.
 
 ## Windows Build
-A zipped folder containing a windows build can be found [here](https://github.com/li-tomecek/Programming3_TermProject_LianaT/blob/main/Assets/Art/Sprites/Spell%20Triangle.png).<br>
+A zipped folder containing a windows build can be found [here](https://drive.google.com/file/d/1yxTzi54Nz3-vsiCQQcLtacK76BMyszWM/view?usp=drive_link).<br>
 Unzip the folder and launch Programming3_TermProject.exe to try out the game.
