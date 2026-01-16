@@ -1,7 +1,7 @@
 #  ~ Spell Masters ~
 
 Developed with Unity (6000.1.9).<br>
-This project was a solo term project intended to practice programming patterns with Unity scripting, as well as UI/UX design and practice. I chose to make a simple single-player game of rock-paper-scissors.
+This was a solo term project intended to practice programming patterns with Unity scripting, as well as UI/UX design and practice. I chose to make a simple single-player game of rock-paper-scissors.
 <p align="center">
   <img src="https://github.com/user-attachments/assets/b0ec0061-915e-43ea-9f27-76f5a1a3be27" alt="Main Menu" width = 700>
 </p>
